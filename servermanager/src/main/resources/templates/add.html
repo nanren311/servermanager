@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<!--  <meta http-equiv="refresh" content="50">-->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta charset="utf-8"> 
+	<title>服务器列表页</title>
+ <link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
+			
+			<!-- 开始
+			<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		<form method="post" enctype="multipart/form-data" action="http://localhost:8001/fileuplaod">
+		 <input type="text" name="url" value="" /><br/>
+    <input type="file" name="filename" multiple="multiple"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+		
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		</div>
+	</div>
+</div>
+			<!-- end -->
+			
+	
+	<div class="container">
+	        <div th:replace="header :: header"></div>
+
+</div>
+	
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+<form action="/server/addnewserver"  method="GET">
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							编号
+						</th>
+						<th>
+							名称
+						</th>
+						<th>
+							品牌
+						</th>
+						<th>
+							归属地
+						</th>
+												<th>
+							显卡类型
+						</th>
+												<th>
+							使用人
+						</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+						<td ><input type="text" class="form-control" id="id"  name="id"
+				   placeholder="自动生成"></td>   
+					<td ><input type="text" class="form-control" id="servername"  name="servername"
+				   placeholder="请输入名称"></td>  
+					<td ><input type="text" class="form-control" id="type"  name="type"
+				   placeholder="请输入品牌"></td>  
+					<td ><input type="text" class="form-control" id="location"  name="location"
+				   placeholder="请输入归属地"></td>  
+					<td ><input type="text" class="form-control" id="gputype"  name="gputype"
+				   placeholder="请输入显卡类型"></td>  
+				   	<td ><input type="text" class="form-control" id="user"  name="user"
+				   placeholder="请输入使用人"></td>  
+			
+					</tr>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-default">保存</button>
+			
+						</form>
+			
+
+		</div>
+	</div>
+</div>
+	
+	
+   <!--引入共有底部
+    <div th:replace="footer :: footer"></div>-->
+    <!--消息盒子+反馈-->
+</body>
+</html>

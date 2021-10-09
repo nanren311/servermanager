@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:http="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<div th:fragment="header">
+	<div class="header">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="navbar-header">
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">首页</a>
+				</div>
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li >
+							 <a href="#">服务器列表</a>
+						</li>
+						
+					
+					</ul>
+
+				</div>
+				
+			</nav>
+	</div>
+	</div>
+	<script type="text/javascript">
+  $(document).ready(function (){
+	  $("li").click(function(){
+           $("li.active").removeClass("active");
+           $(this).parent.addClass("active bg-info");
+	  });
+  });
+	
+  </script>
+</html>

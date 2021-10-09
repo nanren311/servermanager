@@ -1,0 +1,97 @@
+package com.test.server.entity;
+
+import java.io.Serializable;
+
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author chaowu
+ * @since 2021-09-30
+ */
+
+public class Serverlist implements Serializable {
+
+	public static final long serialVersionUID = 1L;
+	public int id;
+
+	public String servername;
+	public String serveruser;
+
+	public String type;
+
+	public String location;
+
+	public String gputype;
+
+	public String gpuuser;
+	public String healthystatus;
+
+	public String getServername() {
+		return servername;
+	}
+
+	public void setServername(String servername) {
+		this.servername = servername;
+	}
+	public String getServeruser() {
+		return serveruser;
+	}
+
+	public void setServeruser(String serveruser) {
+		this.serveruser = serveruser;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getGpuuser() {
+		return gpuuser;
+	}
+
+	public void setGpuuser(String gpuuser) {
+		this.gpuuser = gpuuser;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getGputype() {
+		return gputype;
+	}
+
+	public void setGputype(String gputype) {
+		this.gputype = gputype;
+	}
+
+	@Override
+	public String toString() {
+		return "Serverlist [id=" + id + ", servername=" + servername + ", type="
+				+ type + ", location=" + location + ", gputype=" + gputype
+				+ ", user=" + user + "]";
+	}
+
+}

@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<!--  <meta http-equiv="refresh" content="50">-->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta charset="utf-8"> 
+	<title>服务器列表页</title>
+ <link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
+			
+			<!-- 开始
+			<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		<form method="post" enctype="multipart/form-data" action="http://localhost:8001/fileuplaod">
+		 <input type="text" name="url" value="" /><br/>
+    <input type="file" name="filename" multiple="multiple"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+		
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		</div>
+	</div>
+</div>
+			<!-- end -->
+			
+	
+	<div class="container">
+	        <div th:replace="header :: header"></div>
+
+</div>
+	
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		
+	<h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
+			<table class="table  ">
+				<thead>
+					<tr>
+						<th>
+							编号
+						</th>
+						<th>
+							名称
+						</th>
+						<th>
+							品牌
+						</th>
+						<th>
+							归属地
+						</th>
+												<th>
+							显卡类型
+						</th>
+												<th>
+							使用人
+						</th>
+												<th>
+							管理
+
+					</tr>
+				</thead>
+												
+				
+				<tbody>
+					<tr th:each="server: ${serverlist}">
+					<td th:text="${server.id}"></td>  
+					<td th:text="${server.servername}">Onions</td>  
+					<td th:text="${server.type}">Onions</td>  
+					<td th:text="${server.location}">Onions</td>  
+					<td th:text="${server.gputype}">Onions</td>  
+					<td th:text="${server.user}">Onions</td>  
+                    <td><a th:href="@{/server/add/}" target="_self">新增</a><a th:href="@{/server/del(id=${server.id})}" target="_self">删除</a></td>
+					
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+</div>
+	
+	
+   <!--引入共有底部
+    <div th:replace="footer :: footer"></div>-->
+    <!--消息盒子+反馈-->
+</body>
+</html>

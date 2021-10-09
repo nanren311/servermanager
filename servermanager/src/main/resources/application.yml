@@ -1,0 +1,36 @@
+server:
+  port: 8088
+  maxHttpHeaderSize: 102400
+  tomcat:
+    max-http-form-post-size: -1
+    uri-encoding: UTF-8
+  undertow:
+    max-http-post-size:
+      1000MB
+spring:
+  web:
+    resources:
+      chain:
+        cache: false
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mechine?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: admin
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    check-template-location: true
+    cache: false
+  mvc:
+    static-path-pattern: /*
+    async:
+      request-timeout: 20000
+
+
+
+logging:
+  level:
+    com: info
