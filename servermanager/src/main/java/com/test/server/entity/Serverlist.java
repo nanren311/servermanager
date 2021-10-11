@@ -59,6 +59,13 @@ public class Serverlist implements Serializable {
 		this.location = location;
 	}
 
+	public String getHealthystatus() {
+		return healthystatus;
+	}
+
+	public void setHealthystatus(String healthystatus) {
+		this.healthystatus = healthystatus;
+	}
 	public String getGpuuser() {
 		return gpuuser;
 	}
@@ -89,9 +96,9 @@ public class Serverlist implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Serverlist [id=" + id + ", servername=" + servername + ", type="
+		return "Serverlist [id=" + id + ", servername=" + servername + ", serveruser=" + serveruser + ", type="
 				+ type + ", location=" + location + ", gputype=" + gputype
-				+ ", user=" + user + "]";
+				+ ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + "]";
 	}
 
 }

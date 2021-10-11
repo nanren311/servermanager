@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<meta charset="utf-8"> 
-	<title>服务器列表页</title>
+	<title>资源列表页</title>
  <link rel="stylesheet"
 	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -51,10 +51,13 @@
 				<thead>
 					<tr>
 						<th>
-							编号
+							服务器编号
 						</th>
 						<th>
 							名称
+						</th>
+						<th>
+							服务器使用人
 						</th>
 						<th>
 							品牌
@@ -66,25 +69,34 @@
 							显卡类型
 						</th>
 												<th>
-							使用人
+							显卡使用人
 						</th>
+						                        <th>
+							状态
+						</th>
+												
 
 					</tr>
 				</thead>
 				<tbody>
 					<tr >
-						<td ><input type="text" class="form-control" id="id"  name="id"
+						<td ><input type="text" class="form-control" id="id"  name="id" th:value="${server.id}"
 				   placeholder="自动生成"></td>   
-					<td ><input type="text" class="form-control" id="servername"  name="servername"
+					<td ><input type="text" class="form-control" id="servername"  name="servername" th:value="${server.servername}"
 				   placeholder="请输入名称"></td>  
-					<td ><input type="text" class="form-control" id="type"  name="type"
+				   <td ><input type="text" class="form-control" id="serveruser"  name="serveruser"  th:value="${server.serveruser}"
+				   placeholder="请输入服务器使用人"></td>  
+					<td ><input type="text" class="form-control" id="type"  name="type"  th:value="${server.type}"
 				   placeholder="请输入品牌"></td>  
-					<td ><input type="text" class="form-control" id="location"  name="location"
+					<td ><input type="text" class="form-control" id="location"  name="location"  th:value="${server.location}"
 				   placeholder="请输入归属地"></td>  
-					<td ><input type="text" class="form-control" id="gputype"  name="gputype"
+					<td ><input type="text" class="form-control" id="gputype"  name="gputype"  th:value="${server.gputype}"
 				   placeholder="请输入显卡类型"></td>  
-				   	<td ><input type="text" class="form-control" id="user"  name="user"
+				   	<td ><input type="text" class="form-control" id="gpuuser"  name="gpuuser"  th:value="${server.gpuuser}"
 				   placeholder="请输入使用人"></td>  
+				   
+				   		   	<td ><input type="text" class="form-control" id="healthystatus"  name="healthystatus"  th:value="${server.healthystatus}"
+				   placeholder="健康状态"></td>  
 			
 					</tr>
 				</tbody>

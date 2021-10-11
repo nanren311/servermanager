@@ -28,7 +28,7 @@ public class ServerlistController {
 	// 查
 
 	@Autowired
-	ServerlistMapper mapper;
+	ServerlistMapper mapper ;
 
 	@GetMapping("")
 	public String helloWorld(Model model) throws Exception {
@@ -50,27 +50,71 @@ public class ServerlistController {
 		return "/index";
 	}
 
-	@GetMapping("/server/add")
-	public String addpages(Model model) throws Exception {
-		List<Serverlist> list = mapper.queryAll();
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Serverlist serverlist = (Serverlist) iterator.next();
-			System.out.println(serverlist.toString());
-		}
-		model.addAttribute("serverlist", list);
-		return "/add";
-	}
-
-	@GetMapping("/server/addnewserver")
-	public String add(HttpServletRequest r, Model model) throws Exception {
+//	@GetMapping("/server/add")
+//	public String addpages(Model model) throws Exception {
+//		List<Serverlist> list = mapper.queryAll();
+//		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//			Serverlist serverlist = (Serverlist) iterator.next();
+//			System.out.println(serverlist.toString());
+//		}
+//		model.addAttribute("serverlist", list);
+//		return "/add";
+//	}
+//	
+	
+	
+	@GetMapping("/server/update")
+	public String update(HttpServletRequest r, Model model) throws Exception {
 		Serverlist server = new Serverlist();
-
+		String preid = r.getParameter("id");
+			int id = Integer.parseInt(preid);
+				server.setId(id);
 		server.setServername(r.getParameter("servername"));
+		server.setServeruser(r.getParameter("serveruser"));
 		server.setType(r.getParameter("type"));
 		server.setLocation(r.getParameter("location"));
 		server.setGputype(r.getParameter("gputype"));
-		server.setUser(r.getParameter("user"));
-		mapper.insert(server);
+		server.setGpuuser(r.getParameter("gpuuser"));
+		server.setHealthystatus(r.getParameter("healthystatus"));
+		model.addAttribute("server", server);
+		return "/add";
+	}
+	
+	
+	
+
+	@GetMapping("/server/addnewserver")
+	public String add(HttpServletRequest r, Model model) throws Exception {
+		String preid = r.getParameter("id");
+	    boolean flag = false;//false means update
+		if(preid != ""){
+			int  id = Integer.parseInt(preid);
+			 
+				Serverlist server = new Serverlist();
+				server.setId(id);
+				server.setServername(r.getParameter("servername"));
+				server.setServeruser(r.getParameter("serveruser"));
+				server.setType(r.getParameter("type"));
+				server.setLocation(r.getParameter("location"));
+				server.setGputype(r.getParameter("gputype"));
+				server.setGpuuser(r.getParameter("gpuuser"));
+				server.setHealthystatus(r.getParameter("healthystatus"));
+				mapper.updateById(server);
+
+			 
+		}else {
+			Serverlist server = new Serverlist();
+			server.setServername(r.getParameter("servername"));
+			server.setServeruser(r.getParameter("serveruser"));
+			server.setType(r.getParameter("type"));
+			server.setLocation(r.getParameter("location"));
+			server.setGputype(r.getParameter("gputype"));
+			server.setGpuuser(r.getParameter("gpuuser"));
+			server.setHealthystatus(r.getParameter("healthystatus"));
+			mapper.insert(server);
+
+		}
+
 		return "redirect:/";
 	}
 

@@ -8,11 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<meta charset="utf-8"> 
-	<title>服务器列表页</title>
+	<title>资源列表页</title>
+	<!-- bootstrap 依赖 start-->
  <link rel="stylesheet"
 	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- bootstrap 依赖 end-->
+
 </head>
 <body>
 			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
@@ -47,14 +50,17 @@
 		<div class="col-md-12 column">
 		
 	<h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
-			<table class="table  ">
+			<table class="table ">
 				<thead>
 					<tr>
 						<th>
-							编号
+							服务器编号
 						</th>
 						<th>
 							名称
+						</th>
+						<th>
+							服务器使用人
 						</th>
 						<th>
 							品牌
@@ -66,7 +72,10 @@
 							显卡类型
 						</th>
 												<th>
-							使用人
+							显卡使用人
+						</th>
+						                        <th>
+							状态
 						</th>
 												<th>
 							管理
@@ -78,12 +87,14 @@
 				<tbody>
 					<tr th:each="server: ${serverlist}">
 					<td th:text="${server.id}"></td>  
-					<td th:text="${server.servername}">Onions</td>  
+					<td th:text="${server.servername}">Onions</td> 
+					<td th:text="${server.serveruser}">Onions</td> 
 					<td th:text="${server.type}">Onions</td>  
 					<td th:text="${server.location}">Onions</td>  
 					<td th:text="${server.gputype}">Onions</td>  
-					<td th:text="${server.user}">Onions</td>  
-                    <td><a th:href="@{/server/add/}" target="_self">新增</a><a th:href="@{/server/del(id=${server.id})}" target="_self">删除</a></td>
+					<td th:text="${server.gpuuser}">Onions</td>
+					<td th:text="${server.healthystatus}">Onions</td>  
+                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a> <a>  </a>    <a th:href="@{/server/del(id=${server.id})}" target="_self">删除</a></td>
 					
 					</tr>
 				</tbody>
@@ -95,7 +106,7 @@
 	
 	
    <!--引入共有底部
-    <div th:replace="footer :: footer"></div>-->
+    <div th:replace="footer :: footer"> </div>-->
     <!--消息盒子+反馈-->
 </body>
 </html>

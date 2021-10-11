@@ -18,8 +18,12 @@ import com.test.server.entity.Serverlist;
  */
 @Mapper
 public interface ServerlistMapper extends BaseMapper<Serverlist> {
-	@Select(value = {"select * from  server  ;"})
+	@Select(value = {"select * from  serverlist;"})
 	List<Serverlist> queryAll();
-	@Select(value = {"select count(id)  from  server  ;"})
+	
+	
+
+	
+	@Select(value = {"select count(id)  from  serverlist;"})
 	int queryCount();
 }
