@@ -15,6 +15,19 @@
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!-- bootstrap 依赖 end-->
+ <!-- 引入 Bootstrap样式 -->
+      <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+     <!-- bootstrap-select样式 -->
+      <link href="${pageContext.request.contextPath}/resources/css/select/bootstrap-select.min.css" rel="stylesheet">
+ 
+     <!-- jQuery (Bootstrap 依赖于 jQuery) -->
+      <script src="${pageContext.request.contextPath}/resources/js/jquery-3.0.0.min.js"></script><br>
+     <!-- Bootstrap -->
+       <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+ 
+     <!-- Bootstrap-select 控件 -->
+       <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
+       <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script><br><br>
 
 </head>
 <body>
@@ -39,25 +52,66 @@
 </div>
 			<!-- end -->
 			
+
+
+
 	
-	<div class="container">
-	        <div th:replace="header :: header"></div>
+<div class="container">
+	     <div th:replace="header :: header"></div>
 
 </div>
+
+
 	
 	<div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 		
-	<h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
+	
+	
+	<!--	<div class="container">
+<div class="input-group">
+<input name="key" autocomplete="off" type="text" class="form-control" placeholder="输入要搜索的服务器名称或显卡编号" ><span class="input-group-addon btn btn-primary">搜索</span>
+</div>  
+</div>  -->
+
+
+	
+	
+
+
+<form class="navbar-form navbar-left" role="search">
+
+   <div class="form-group">    
+       <input type="text" class="form-control" placeholder="请输入要搜索的服务器名">
+       <button type="submit" class="btn btn-default">搜索</button>     
+       <button type="submit" class="btn btn-default">重置</button>
+       <a>  </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>  </a>
+       <input type="text" class="form-control" placeholder="请输入要搜索的显卡编号">
+       <button type="submit" class="btn btn-default">搜索</button>     
+       <button type="submit" class="btn btn-default">重置</button>       
+          
+       </div>
+   
+
+
+
+	
+	
+	
+	
+
+	
+		
+<h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
 			<table class="table ">
 				<thead>
 					<tr>
 						<th>
-							服务器编号
+							编号
 						</th>
 						<th>
-							名称
+							服务器名称
 						</th>
 						<th>
 							服务器使用人
@@ -69,13 +123,13 @@
 							归属地
 						</th>
 												<th>
-							显卡类型
+							显卡品牌
 						</th>
 												<th>
 							显卡使用人
 						</th>
 						                        <th>
-							状态
+							健康状态
 						</th>
 												<th>
 							管理
@@ -94,12 +148,59 @@
 					<td th:text="${server.gputype}">Onions</td>  
 					<td th:text="${server.gpuuser}">Onions</td>
 					<td th:text="${server.healthystatus}">Onions</td>  
-                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a> <a>  </a>    <a th:href="@{/server/del(id=${server.id})}" target="_self">删除</a></td>
+                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/del(id=${server.id})}" target="_self">删除</a></td>
 					
 					</tr>
 				</tbody>
 			</table>
-			
+			<h4>	显卡总数：<a th:text="${count}" >1</a>张  </h4>
+			<table class="table ">
+				<thead>
+					<tr>
+											<th>
+						    编号
+						</th>
+						<th>
+						    归属地
+						</th>
+						<th>
+							显卡编号
+						</th>
+						<th>
+							显卡品牌
+						</th>
+						<th>
+							显卡使用人
+						</th>
+						<th>
+							健康状态
+						</th>
+												<th>
+							预占时间
+						</th>
+												<th>
+							管理
+
+					</tr>
+				</thead>
+												
+				
+				<tbody>
+				<tr>
+	<!--				<tr th:each="gpu: ${gpulist}">    -->
+					<td >1</td>  
+					<td >北京</td> 
+					<td >123456</td> 
+					<td >NVD</td>  
+					<td >吴超</td>  
+					<td >好</td>  
+					<td >2021-11</td>
+                    <td><a>新增</a> <a>  </a> <a>删除</a></td>
+					
+					</tr>
+				</tbody>
+			</table>
+			</form>
 		</div>
 	</div>
 </div>
