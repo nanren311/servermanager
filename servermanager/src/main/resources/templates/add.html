@@ -66,6 +66,9 @@
 							归属地
 						</th>
 												<th>
+							服务器预占时间
+						</th>
+												<th>
 							显卡类型
 						</th>
 												<th>
@@ -89,7 +92,9 @@
 					<td ><input type="text" class="form-control" id="type"  name="type"  th:value="${server.type}"
 				   placeholder="请输入品牌"></td>  
 					<td ><input type="text" class="form-control" id="location"  name="location"  th:value="${server.location}"
-				   placeholder="请输入归属地"></td>  
+				   placeholder="请输入归属地"></td> 
+				   <td ><input type="text" class="form-control" id="serverreservetime"  name="serverreservetime"  th:value="${server.serverreservetime}"
+				   placeholder="请输入预占时间"></td>  
 					<td ><input type="text" class="form-control" id="gputype"  name="gputype"  th:value="${server.gputype}"
 				   placeholder="请输入显卡类型"></td>  
 				   	<td ><input type="text" class="form-control" id="gpuuser"  name="gpuuser"  th:value="${server.gpuuser}"

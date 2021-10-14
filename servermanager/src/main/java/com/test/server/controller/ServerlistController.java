@@ -73,6 +73,7 @@ public class ServerlistController {
 		server.setServeruser(r.getParameter("serveruser"));
 		server.setType(r.getParameter("type"));
 		server.setLocation(r.getParameter("location"));
+		server.setServerreservetime(r.getParameter("serverreservetime"));
 		server.setGputype(r.getParameter("gputype"));
 		server.setGpuuser(r.getParameter("gpuuser"));
 		server.setHealthystatus(r.getParameter("healthystatus"));
@@ -96,6 +97,7 @@ public class ServerlistController {
 				server.setServeruser(r.getParameter("serveruser"));
 				server.setType(r.getParameter("type"));
 				server.setLocation(r.getParameter("location"));
+				server.setServerreservetime(r.getParameter("serverreservetime"));
 				server.setGputype(r.getParameter("gputype"));
 				server.setGpuuser(r.getParameter("gpuuser"));
 				server.setHealthystatus(r.getParameter("healthystatus"));
@@ -108,6 +110,7 @@ public class ServerlistController {
 			server.setServeruser(r.getParameter("serveruser"));
 			server.setType(r.getParameter("type"));
 			server.setLocation(r.getParameter("location"));
+			server.setServerreservetime(r.getParameter("serverreservetime"));
 			server.setGputype(r.getParameter("gputype"));
 			server.setGpuuser(r.getParameter("gpuuser"));
 			server.setHealthystatus(r.getParameter("healthystatus"));
@@ -123,6 +126,24 @@ public class ServerlistController {
 		int id = Integer.parseInt(r.getParameter("id"));
 		mapper.deleteById(id);
 		return "redirect:/";
+	}
+	
+	@GetMapping("/server/chakan")
+	public String chakan(HttpServletRequest r, Model model) throws Exception {
+		Serverlist server = new Serverlist();
+		String preid = r.getParameter("id");
+			int id = Integer.parseInt(preid);
+				server.setId(id);
+		server.setServername(r.getParameter("servername"));
+		server.setServeruser(r.getParameter("serveruser"));
+		server.setType(r.getParameter("type"));
+		server.setLocation(r.getParameter("location"));
+		server.setServerreservetime(r.getParameter("serverreservetime"));
+		server.setGputype(r.getParameter("gputype"));
+		server.setGpuuser(r.getParameter("gpuuser"));
+		server.setHealthystatus(r.getParameter("healthystatus"));
+		model.addAttribute("server", server);
+		return "/chakan";
 	}
 
 	// 增

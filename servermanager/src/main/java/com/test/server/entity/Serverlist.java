@@ -22,6 +22,7 @@ public class Serverlist implements Serializable {
 	public String type;
 
 	public String location;
+	public String serverreservetime;
 
 	public String gputype;
 
@@ -57,6 +58,13 @@ public class Serverlist implements Serializable {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public String getServerreservetime(){
+		return serverreservetime;
+	}
+
+	public void setServerreservetime(String serverreservetime) {
+		this.serverreservetime = serverreservetime;
 	}
 
 	public String getHealthystatus() {
@@ -97,7 +105,7 @@ public class Serverlist implements Serializable {
 	@Override
 	public String toString() {
 		return "Serverlist [id=" + id + ", servername=" + servername + ", serveruser=" + serveruser + ", type="
-				+ type + ", location=" + location + ", gputype=" + gputype
+				+ type + ", location=" + location + ", serverreservetime=" + serverreservetime + ", gputype=" + gputype
 				+ ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + "]";
 	}
 

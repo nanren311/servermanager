@@ -84,25 +84,39 @@
 
    <div class="form-group">    
        <input type="text" class="form-control" placeholder="请输入要搜索的服务器名">
+       <input type="text" class="form-control" placeholder="请输入服务器厂商">
        <button type="submit" class="btn btn-default">搜索</button>     
        <button type="submit" class="btn btn-default">重置</button>
-       <a>  </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a>  </a>
+              <p>
+       
+       </p> 
+       
        <input type="text" class="form-control" placeholder="请输入要搜索的显卡编号">
+              <input type="text" class="form-control" placeholder="请输入显卡厂商">
        <button type="submit" class="btn btn-default">搜索</button>     
-       <button type="submit" class="btn btn-default">重置</button>       
-          
+       <button type="submit" class="btn btn-default">重置</button>
+       <p>
+       
+       </p>       
+       <p>
+       
+       
+       </p>
        </div>
+       <p> </p>
    
-
-
-
-	
-	
-	
-	
-
-	
-		
+			<div class="tabbable" id="tabs-880569">
+				<ul class="nav nav-tabs">
+					<li>
+						 <a href="#panel-331802" data-toggle="tab">服务器列表</a>
+					</li>
+					<li class="active">
+						 <a href="#panel-978340" data-toggle="tab">显卡列表</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane" id="panel-331802">
+						<p>
 <h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
 			<table class="table ">
 				<thead>
@@ -121,6 +135,9 @@
 						</th>
 						<th>
 							归属地
+						</th>
+												<th>
+							服务器预占时间
 						</th>
 												<th>
 							显卡品牌
@@ -145,15 +162,21 @@
 					<td th:text="${server.serveruser}">Onions</td> 
 					<td th:text="${server.type}">Onions</td>  
 					<td th:text="${server.location}">Onions</td>  
+					<td th:text="${server.serverreservetime}">Onions</td> 
 					<td th:text="${server.gputype}">Onions</td>  
 					<td th:text="${server.gpuuser}">Onions</td>
 					<td th:text="${server.healthystatus}">Onions</td>  
-                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/del(id=${server.id})}" target="_self">删除</a></td>
+                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverreservetime=${server.serverreservetime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverreservetime=${server.serverreservetime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">查看</a></td>
 					
 					</tr>
 				</tbody>
 			</table>
-			<h4>	显卡总数：<a th:text="${count}" >1</a>张  </h4>
+						<p>
+						</p>
+					</div>
+					<div class="tab-pane active" id="panel-978340">
+						<p>
+			<h4>	显卡总数：<a >1</a>张  </h4>
 			<table class="table ">
 				<thead>
 					<tr>
@@ -195,11 +218,26 @@
 					<td >吴超</td>  
 					<td >好</td>  
 					<td >2021-11</td>
-                    <td><a>新增</a> <a>  </a> <a>删除</a></td>
+                    <td><a>编辑</a> <a>  </a> <a>查看</a></td>
 					
 					</tr>
 				</tbody>
 			</table>
+						<p></p>
+					</div>
+				</div>
+			</div>
+
+
+	
+	
+	
+	
+
+	
+		
+
+
 			</form>
 		</div>
 	</div>
