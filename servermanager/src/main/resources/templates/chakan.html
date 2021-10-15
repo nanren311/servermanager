@@ -13,14 +13,6 @@
 	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!--时间格式-->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-
 </head>
 <body>
 			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
@@ -49,15 +41,11 @@
 	        <div th:replace="header :: header"></div>
 
 </div>
-
- 
-    
-    
 	
 	<div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
-<form action="/server/addnewserver"  method="GET">
+<form action="/server/chakan"  method="GET">
 
 			<table class="table">
 				<thead>
@@ -78,10 +66,7 @@
 							归属地
 						</th>
 												<th>
-							开始预占时间
-						</th>
-						<th>
-							结束预占时间
+							服务器预占时间
 						</th>
 												<th>
 							显卡类型
@@ -98,75 +83,6 @@
 				</thead>
 				<tbody>
 					<tr >
-					
-	 <div class='col-sm-6'>
-
-        <div class="form-group">
-
-            <label>开始日期：</label>
-
-            <!--指定 date标记-->
-
-            <div class='input-group date' id='datetimepicker1'>
-
-                <input type='text' class="form-control" />
-
-                <span class="input-group-addon">
-
-                    <span class="glyphicon glyphicon-calendar"></span>
-
-                </span>
-
-            </div>
-
-        </div>
-        <div class="form-group">
-
-            <label>结束日期：</label>
-
-            <!--指定 date标记-->
-
-            <div class='input-group date' id='datetimepicker2'>
-
-                <input type='text' class="form-control" />
-
-                <span class="input-group-addon">
-
-                    <span class="glyphicon glyphicon-calendar"></span>
-
-                </span>
-
-            </div>
-
-        </div>
-
-    </div> 
- <script type="text/javascript">
-
-
-    $(function () {
-
-        $('#datetimepicker1').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn'),
-
-
-        });
-
-        $('#datetimepicker2').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn')
-
-        });
-
-    });
-
-
-</script>   				
-					
-					
-					
-					
 						<td ><input type="text" class="form-control" id="id"  name="id" th:value="${server.id}"
 				   placeholder="自动生成"></td>   
 					<td ><input type="text" class="form-control" id="servername"  name="servername" th:value="${server.servername}"
@@ -177,14 +93,8 @@
 				   placeholder="请输入品牌"></td>  
 					<td ><input type="text" class="form-control" id="location"  name="location"  th:value="${server.location}"
 				   placeholder="请输入归属地"></td> 
-				   
-				   <td ><input type="text" class="form-control" id="datetimepicker1"  name="serverstarttime"  th:value="${server.serverreservetime}"
-				   placeholder="开始预占时间"></td>  
-				   
-			<!--  	   <td ><input type="text" class="form-control" id="datetimepicker1"  name="serverstarttime"  th:value="${server.serverreservetime}"
-				   placeholder="开始预占时间"></td>  -->
-				   <td ><input type="text" class="form-control" id="datetimepicker2"  name="serverendtime"  th:value="${server.serverreservetime}"
-				   placeholder="结束预占时间"></td> 
+				   <td ><input type="text" class="form-control" id="serverreservetime"  name="serverreservetime"  th:value="${server.serverreservetime}"
+				   placeholder="请输入服务器预占时间"></td>  
 					<td ><input type="text" class="form-control" id="gputype"  name="gputype"  th:value="${server.gputype}"
 				   placeholder="请输入显卡类型"></td>  
 				   	<td ><input type="text" class="form-control" id="gpuuser"  name="gpuuser"  th:value="${server.gpuuser}"
@@ -196,7 +106,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<button type="submit" class="btn btn-default">保存</button>
+
 			
 						</form>
 			
