@@ -78,10 +78,10 @@
 							归属地
 						</th>
 												<th>
-							开始预占时间
+							开始时间
 						</th>
 						<th>
-							结束预占时间
+							结束时间
 						</th>
 												<th>
 							显卡类型
@@ -99,70 +99,10 @@
 				<tbody>
 					<tr >
 					
-	 <div class='col-sm-6'>
-
-        <div class="form-group">
-
-            <label>开始日期：</label>
-
-            <!--指定 date标记-->
-
-            <div class='input-group date' id='datetimepicker1'>
-
-                <input type='text' class="form-control" />
-
-                <span class="input-group-addon">
-
-                    <span class="glyphicon glyphicon-calendar"></span>
-
-                </span>
-
-            </div>
-
-        </div>
-        <div class="form-group">
-
-            <label>结束日期：</label>
-
-            <!--指定 date标记-->
-
-            <div class='input-group date' id='datetimepicker2'>
-
-                <input type='text' class="form-control" />
-
-                <span class="input-group-addon">
-
-                    <span class="glyphicon glyphicon-calendar"></span>
-
-                </span>
-
-            </div>
-
-        </div>
-
-    </div> 
- <script type="text/javascript">
 
 
-    $(function () {
 
-        $('#datetimepicker1').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn'),
-
-
-        });
-
-        $('#datetimepicker2').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn')
-
-        });
-
-    });
-
-
-</script>   				
+ 			
 					
 					
 					
@@ -178,13 +118,67 @@
 					<td ><input type="text" class="form-control" id="location"  name="location"  th:value="${server.location}"
 				   placeholder="请输入归属地"></td> 
 				   
-				   <td ><input type="text" class="form-control" id="datetimepicker1"  name="serverstarttime"  th:value="${server.serverreservetime}"
-				   placeholder="开始预占时间"></td>  
+
+				   
+				   <td >
+				    <!-- <div class="row"> -->
+    <!-- <div class='col-sm-6'> -->
+
+        <div class="form-group" style="width:150px;">
+       <!-- <div class="modal-dialog modal-sm"> -->
+
+
+
+            <!--指定 date标记-->
+
+            <div class='input-group date' id='datetimepicker1' >
+
+                <input type='text' class="form-control" name="serverstarttime"  th:value="${server.serverstarttime}">
+
+                <span class="input-group-addon">
+
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            <!-- </div> -->
+            </div>
+        <!-- </div> -->
+    <!-- </div>   -->
+
+
+				   </td>  
 				   
 			<!--  	   <td ><input type="text" class="form-control" id="datetimepicker1"  name="serverstarttime"  th:value="${server.serverreservetime}"
 				   placeholder="开始预占时间"></td>  -->
-				   <td ><input type="text" class="form-control" id="datetimepicker2"  name="serverendtime"  th:value="${server.serverreservetime}"
-				   placeholder="结束预占时间"></td> 
+				<!--     <td ><input type="text" class="form-control" id="datetimepicker2"  name="serverendtime"  th:value="${server.serverreservetime}"
+				   placeholder="结束预占时间"></td> -->
+
+				   
+						   <td >
+				    <!-- <div class="row">
+    <div class='col-sm-6'> -->
+
+        <div class="form-group" style="width:150px;">
+
+
+
+            <!--指定 date标记-->
+
+            <div class='input-group date' id='datetimepicker2'>
+
+                <input type='text' class="form-control" name="serverendtime" th:value="${server.serverendtime}">
+
+                <span class="input-group-addon">
+
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        <!-- </div>
+    </div>   -->
+ 
+
+				   </td>  		   
+				   
+				   
 					<td ><input type="text" class="form-control" id="gputype"  name="gputype"  th:value="${server.gputype}"
 				   placeholder="请输入显卡类型"></td>  
 				   	<td ><input type="text" class="form-control" id="gpuuser"  name="gpuuser"  th:value="${server.gpuuser}"
@@ -199,7 +193,7 @@
 			<button type="submit" class="btn btn-default">保存</button>
 			
 						</form>
-			
+ 		
 
 		</div>
 	</div>
@@ -210,4 +204,23 @@
     <div th:replace="footer :: footer"></div>-->
     <!--消息盒子+反馈-->
 </body>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+
+
+        });
+
+        $('#datetimepicker2').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn'),
+
+
+        });
+
+    });
+
+</script>
 </html>

@@ -74,6 +74,8 @@ public class ServerlistController {
 		server.setType(r.getParameter("type"));
 		server.setLocation(r.getParameter("location"));
 		server.setServerreservetime(r.getParameter("serverreservetime"));
+		server.setServerstarttime(r.getParameter("serverstarttime"));
+		server.setServerendtime(r.getParameter("serverendtime"));
 		server.setGputype(r.getParameter("gputype"));
 		server.setGpuuser(r.getParameter("gpuuser"));
 		server.setHealthystatus(r.getParameter("healthystatus"));
@@ -98,6 +100,8 @@ public class ServerlistController {
 				server.setType(r.getParameter("type"));
 				server.setLocation(r.getParameter("location"));
 				server.setServerreservetime(r.getParameter("serverreservetime"));
+				server.setServerstarttime(r.getParameter("serverstarttime"));
+				server.setServerendtime(r.getParameter("serverendtime"));
 				server.setGputype(r.getParameter("gputype"));
 				server.setGpuuser(r.getParameter("gpuuser"));
 				server.setHealthystatus(r.getParameter("healthystatus"));
@@ -111,6 +115,8 @@ public class ServerlistController {
 			server.setType(r.getParameter("type"));
 			server.setLocation(r.getParameter("location"));
 			server.setServerreservetime(r.getParameter("serverreservetime"));
+			server.setServerstarttime(r.getParameter("serverstarttime"));
+			server.setServerendtime(r.getParameter("serverendtime"));
 			server.setGputype(r.getParameter("gputype"));
 			server.setGpuuser(r.getParameter("gpuuser"));
 			server.setHealthystatus(r.getParameter("healthystatus"));

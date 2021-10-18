@@ -23,6 +23,8 @@ public class Serverlist implements Serializable {
 
 	public String location;
 	public String serverreservetime;
+	public String serverstarttime;
+	public String serverendtime;
 
 	public String gputype;
 
@@ -58,6 +60,20 @@ public class Serverlist implements Serializable {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	public String getServerstarttime(){
+		return serverstarttime;
+	}
+
+	public void setServerstarttime(String serverstarttime) {
+		this.serverstarttime = serverstarttime;
+	}
+	public String getServerendtime(){
+		return serverendtime;
+	}
+
+	public void setServerendtime(String serverendtime) {
+		this.serverendtime = serverendtime;
 	}
 	public String getServerreservetime(){
 		return serverreservetime;
@@ -105,7 +121,7 @@ public class Serverlist implements Serializable {
 	@Override
 	public String toString() {
 		return "Serverlist [id=" + id + ", servername=" + servername + ", serveruser=" + serveruser + ", type="
-				+ type + ", location=" + location + ", serverreservetime=" + serverreservetime + ", gputype=" + gputype
+				+ type + ", location=" + location + ", serverreservetime=" + serverreservetime + ",serverstarttime=" + serverstarttime + ", serverendtime=" + serverendtime + ", gputype=" + gputype
 				+ ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + "]";
 	}
 

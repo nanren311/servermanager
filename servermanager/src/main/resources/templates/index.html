@@ -177,9 +177,10 @@
 
 
 </script>
-       </p>      
+     
 
        </div>
+              </p> 
        <p> </p>
    
 			<div class="tabbable" id="tabs-880569">
@@ -213,8 +214,12 @@
 						<th>
 							归属地
 						</th>
-												<th>
-							服务器预占时间
+												
+						<th>
+							预占开始时间
+						</th>
+						<th>
+							预占结束时间
 						</th>
 												<th>
 							显卡品牌
@@ -239,11 +244,13 @@
 					<td th:text="${server.serveruser}">Onions</td> 
 					<td th:text="${server.type}">Onions</td>  
 					<td th:text="${server.location}">Onions</td>  
-					<td th:text="${server.serverreservetime}">Onions</td> 
+
+					<td th:text="${server.serverstarttime}">Onions</td> 
+					<td th:text="${server.serverendtime}">Onions</td>  
 					<td th:text="${server.gputype}">Onions</td>  
 					<td th:text="${server.gpuuser}">Onions</td>
 					<td th:text="${server.healthystatus}">Onions</td>  
-                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverreservetime=${server.serverreservetime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverreservetime=${server.serverreservetime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">查看</a></td>
+                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverreservetime=${server.serverreservetime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">查看</a></td>
 					
 					</tr>
 				</tbody>
