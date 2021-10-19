@@ -94,7 +94,7 @@
 
 <form class="navbar-form navbar-left" role="search">
 
-   <div class="form-group">    
+<!--    <div class="form-group">    
        <input type="text" class="form-control" placeholder="请输入要搜索的服务器名">
        <input type="text" class="form-control" placeholder="请输入服务器厂商">
        <button type="submit" class="btn btn-default">搜索</button>     
@@ -109,74 +109,34 @@
        <button type="submit" class="btn btn-default">重置</button>
        <p>
  
-       </p>  
-              <p>
-      <div class="row">
-    <div class='col-sm-6'>
+       </p> 
+       -->  
+       <div class="form-group">    
+       <div class="input-group">         
+          <span class="input-group-addon" >服务器型号</span>
+          <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="servertype"  name="servertype" title="请选择" > 
 
-        <div class="form-group">
-
-            <label>开始日期：</label>
-
-            <!--指定 date标记-->
-
-            <div class='input-group date' id='datetimepicker1'>
-
-                <input type='text' class="form-control" />
-
-                <span class="input-group-addon">
-
-                    <span class="glyphicon glyphicon-calendar"></span>
-
-                </span>
-
-            </div>
-
-        </div>
-        <div class="form-group">
-
-            <label>结束日期：</label>
-
-            <!--指定 date标记-->
-
-            <div class='input-group date' id='datetimepicker2'>
-
-                <input type='text' class="form-control" />
-
-                <span class="input-group-addon">
-
-                    <span class="glyphicon glyphicon-calendar"></span>
-
-                </span>
-
-            </div>
-
-        </div>
-
+                <option    value ="${type}"  >dell</option>
+                <option    value ="${type}"  >浪潮</option>
+           
+          </select>
+       </div>
+          <button type="submit" class="btn btn-primary">搜索</button> 
+          <button type="submit" class="btn btn-primary">重置</button>
     </div> 
+   
+ <!-- 搜索框 get请求 根据商品名称的关键字进行搜索-->
+<!--
+<form action="/server/search" method="GET" >
+  <input type="text" name="servertype" placeholder="品牌" class="form-control" value="${server.type}">
+  <button class="btn btn-primary">查询</button>
+</form>  
+    -->
+             
+      <div class="row">
+ 
     
- <script type="text/javascript">
-
-
-    $(function () {
-
-        $('#datetimepicker1').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn'),
-
-
-        });
-
-        $('#datetimepicker2').datetimepicker({
-            format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn')
-
-        });
-
-    });
-
-
-</script>
+ 
      
 
        </div>

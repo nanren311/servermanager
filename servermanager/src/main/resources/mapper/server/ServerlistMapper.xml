@@ -2,4 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.test.server.mapper.ServerlistMapper">
 
+
+<select id="type" resultType="com.test.server.entity.Serverlist">
+    SELECT
+     *
+    FROM
+      serverlist
+
+    <where>
+      <if test="type != null and type != ''">
+      serverlist.type like 
+        serverlist.type LIKE concat('%',#{type},'%')
+      </if>
+
+    </where>
+    ORDER BY id DESC
+</select>
+
+
+
+
 </mapper>
