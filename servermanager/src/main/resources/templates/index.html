@@ -112,19 +112,34 @@
        </p> 
        -->  
        <div class="form-group">    
-       <div class="input-group">         
-          <span class="input-group-addon" >服务器型号</span>
-          <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="servertype"  name="servertype" title="请选择" > 
+       <div class="input-group">   
+       <form action="/server/search" method="GET" >      
+          <span class="input-group-addon" >所在地</span>
+          <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="location"  name="location" title="请选择" value ="${server.location}" > 
 
-                <option    value ="${type}"  >dell</option>
-                <option    value ="${type}"  >浪潮</option>
+                <option value="上海">上海</option>
+                <option value="北京">北京</option>
            
           </select>
+          
+<p> </p>
+                 <form action="/server/search" method="GET" >      
+          <span class="input-group-addon" >服务器名称</span>
+          <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="type"  name="type" title="请选择" value ="${server.type}" > 
+
+                <option value="dell">dell</option>
+                <option value="浪潮">浪潮</option>
+           
+          </select>
+          </form>
        </div>
+       
           <button type="submit" class="btn btn-primary">搜索</button> 
           <button type="submit" class="btn btn-primary">重置</button>
+          
     </div> 
-   
+   </form>
+
  <!-- 搜索框 get请求 根据商品名称的关键字进行搜索-->
 <!--
 <form action="/server/search" method="GET" >
@@ -165,6 +180,9 @@
 						<th>
 							服务器名称
 						</th>
+						                    <th>
+							闲忙状态
+						</th>
 						<th>
 							服务器使用人
 						</th>
@@ -185,7 +203,7 @@
 							显卡品牌
 						</th>
 												<th>
-							显卡使用人
+							部门
 						</th>
 						                        <th>
 							健康状态
@@ -200,7 +218,9 @@
 				<tbody>
 					<tr th:each="server: ${serverlist}">
 					<td th:text="${server.id}"></td>  
-					<td th:text="${server.servername}">Onions</td> 
+					<td th:text="${server.servername}">Onions</td>
+					<td th:text="使用中">Onions</td>
+					 <span style="color:red"></span> 
 					<td th:text="${server.serveruser}">Onions</td> 
 					<td th:text="${server.type}">Onions</td>  
 					<td th:text="${server.location}">Onions</td>  
@@ -210,7 +230,7 @@
 					<td th:text="${server.gputype}">Onions</td>  
 					<td th:text="${server.gpuuser}">Onions</td>
 					<td th:text="${server.healthystatus}">Onions</td>  
-                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverreservetime=${server.serverreservetime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">查看</a></td>
+                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">查看</a></td>
 					
 					</tr>
 				</tbody>

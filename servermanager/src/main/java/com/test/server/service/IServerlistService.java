@@ -15,5 +15,8 @@ import com.test.server.entity.Serverlist;
  */
 @Service
 public interface IServerlistService extends IService<Serverlist> {
+	
+	
+	
 
 }

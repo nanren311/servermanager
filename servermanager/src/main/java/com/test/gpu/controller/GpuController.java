@@ -39,9 +39,9 @@ public class GpuController {
 
 	@GetMapping("/index")
 	public String idnex(Model model) throws Exception {
-		List<Serverlist> list = mapper.queryAll();
+		List<list> list = mapper.queryAll();
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Serverlist serverlist = (Serverlist) iterator.next();
+			list serverlist = (list) iterator.next();
 			System.out.println(serverlist.toString());
 		}
 		model.addAttribute("serverlist", list);

@@ -51,10 +51,13 @@
 				<thead>
 					<tr>
 						<th>
-							服务器编号
+							编号
 						</th>
 						<th>
-							名称
+							服务器名称
+						</th>
+						                    <th>
+							闲忙状态
 						</th>
 						<th>
 							服务器使用人
@@ -65,17 +68,21 @@
 						<th>
 							归属地
 						</th>
-												<th>
-							服务器预占时间
+												
+						<th>
+							预占开始时间
+						</th>
+						<th>
+							预占结束时间
 						</th>
 												<th>
-							显卡类型
+							显卡品牌
 						</th>
 												<th>
-							显卡使用人
+							部门
 						</th>
 						                        <th>
-							状态
+							健康状态
 						</th>
 												
 
@@ -83,25 +90,18 @@
 				</thead>
 				<tbody>
 					<tr >
-						<td ><input type="text" class="form-control" id="id"  name="id" th:value="${server.id}"
-				   placeholder="自动生成"></td>   
-					<td ><input type="text" class="form-control" id="servername"  name="servername" th:value="${server.servername}"
-				   placeholder="请输入名称"></td>  
-				   <td ><input type="text" class="form-control" id="serveruser"  name="serveruser"  th:value="${server.serveruser}"
-				   placeholder="请输入服务器使用人"></td>  
-					<td ><input type="text" class="form-control" id="type"  name="type"  th:value="${server.type}"
-				   placeholder="请输入品牌"></td>  
-					<td ><input type="text" class="form-control" id="location"  name="location"  th:value="${server.location}"
-				   placeholder="请输入归属地"></td> 
-				   <td ><input type="text" class="form-control" id="serverreservetime"  name="serverreservetime"  th:value="${server.serverreservetime}"
-				   placeholder="请输入服务器预占时间"></td>  
-					<td ><input type="text" class="form-control" id="gputype"  name="gputype"  th:value="${server.gputype}"
-				   placeholder="请输入显卡类型"></td>  
-				   	<td ><input type="text" class="form-control" id="gpuuser"  name="gpuuser"  th:value="${server.gpuuser}"
-				   placeholder="请输入使用人"></td>  
-				   
-				   		   	<td ><input type="text" class="form-control" id="healthystatus"  name="healthystatus"  th:value="${server.healthystatus}"
-				   placeholder="健康状态"></td>  
+						<td th:text="${server.id}"></td>  
+					<td th:text="${server.servername}">Onions</td>
+					<td th:text="使用中">Onions</td>
+					<td th:text="${server.serveruser}">Onions</td> 
+					<td th:text="${server.type}">Onions</td>  
+					<td th:text="${server.location}">Onions</td>  
+
+					<td th:text="${server.serverstarttime}">Onions</td> 
+					<td th:text="${server.serverendtime}">Onions</td>  
+					<td th:text="${server.gputype}">Onions</td>  
+					<td th:text="${server.gpuuser}">Onions</td>
+					<td th:text="${server.healthystatus}">Onions</td> 
 			
 					</tr>
 				</tbody>

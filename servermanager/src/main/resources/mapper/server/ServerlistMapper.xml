@@ -11,7 +11,6 @@
 
     <where>
       <if test="type != null and type != ''">
-      serverlist.type like 
         serverlist.type LIKE concat('%',#{type},'%')
       </if>
 
