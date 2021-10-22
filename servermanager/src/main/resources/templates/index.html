@@ -43,26 +43,7 @@
 
 </head>
 <body>
-			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
-			
-			<!-- 开始
-			<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-		<form method="post" enctype="multipart/form-data" action="http://localhost:8001/fileuplaod">
-		 <input type="text" name="url" value="" /><br/>
-    <input type="file" name="filename" multiple="multiple"/><br/>
-    <input type="submit" value="提交"/>
-</form>
-		
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-		</div>
-	</div>
-</div>
-			<!-- end -->
+
 			
 
 
@@ -80,12 +61,7 @@
 		<div class="col-md-12 column">
 		
 	
-	
-	<!--	<div class="container">
-<div class="input-group">
-<input name="key" autocomplete="off" type="text" class="form-control" placeholder="输入要搜索的服务器名称或显卡编号" ><span class="input-group-addon btn btn-primary">搜索</span>
-</div>  
-</div>  -->
+
 
 
 	
@@ -94,34 +70,25 @@
 
 <form class="navbar-form navbar-left" role="search">
 
-<!--    <div class="form-group">    
-       <input type="text" class="form-control" placeholder="请输入要搜索的服务器名">
-       <input type="text" class="form-control" placeholder="请输入服务器厂商">
-       <button type="submit" class="btn btn-default">搜索</button>     
-       <button type="submit" class="btn btn-default">重置</button>
-              <p>
-       
-       </p> 
-       
-       <input type="text" class="form-control" placeholder="请输入要搜索的显卡编号">
-              <input type="text" class="form-control" placeholder="请输入显卡厂商">
-       <button type="submit" class="btn btn-default">搜索</button>     
-       <button type="submit" class="btn btn-default">重置</button>
-       <p>
  
-       </p> 
-       -->  
        <div class="form-group">    
-       <div class="input-group">   
-       <form action="/server/search" method="GET" >      
+       <div class="input-group">
+       
+          
+       <!-- 注释所在地 start-->
+ <!--      <form action="/server/search" method="GET" >      
           <span class="input-group-addon" >所在地</span>
+ 
+ 
+ 
           <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="location"  name="location" title="请选择" value ="${server.location}" > 
 
                 <option value="上海">上海</option>
                 <option value="北京">北京</option>
            
           </select>
-          
+          -->
+           <!-- 注释所在地 end--> 
 <p> </p>
                  <form action="/server/search" method="GET" >      
           <span class="input-group-addon" >服务器名称</span>
@@ -133,6 +100,7 @@
           </select>
           </form>
        </div>
+       <td><a th:href="@{/server/search/}" target="_self">查询</a></td>
        
           <button type="submit" class="btn btn-primary">搜索</button> 
           <button type="submit" class="btn btn-primary">重置</button>
@@ -147,29 +115,10 @@
   <button class="btn btn-primary">查询</button>
 </form>  
     -->
-             
-      <div class="row">
- 
-    
- 
-     
 
-       </div>
-              </p> 
        <p> </p>
    
-			<div class="tabbable" id="tabs-880569">
-				<ul class="nav nav-tabs">
-					<li>
-						 <a href="#panel-331802" data-toggle="tab">服务器列表</a>
-					</li>
-					<li class="active">
-						 <a href="#panel-978340" data-toggle="tab">显卡列表</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane" id="panel-331802">
-						<p>
+		
 <h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
 			<table class="table ">
 				<thead>
@@ -220,7 +169,7 @@
 					<td th:text="${server.id}"></td>  
 					<td th:text="${server.servername}">Onions</td>
 					<td th:text="使用中">Onions</td>
-					 <span style="color:red"></span> 
+
 					<td th:text="${server.serveruser}">Onions</td> 
 					<td th:text="${server.type}">Onions</td>  
 					<td th:text="${server.location}">Onions</td>  
@@ -240,54 +189,12 @@
 					</div>
 					<div class="tab-pane active" id="panel-978340">
 						<p>
-			<h4>	显卡总数：<a >1</a>张  </h4>
-			<table class="table ">
-				<thead>
-					<tr>
-											<th>
-						    编号
-						</th>
-						<th>
-						    归属地
-						</th>
-						<th>
-							显卡编号
-						</th>
-						<th>
-							显卡品牌
-						</th>
-						<th>
-							显卡使用人
-						</th>
-						<th>
-							健康状态
-						</th>
-												<th>
-							预占时间
-						</th>
-												<th>
-							管理
-
-					</tr>
-				</thead>
+	
 												
 				
 				<tbody>
 				<tr>
-	<!--				<tr th:each="gpu: ${gpulist}">    -->
-					<td >1</td>  
-					<td >北京</td> 
-					<td >123456</td> 
-					<td >NVD</td>  
-					<td >吴超</td>  
-					<td >好</td>  
-					<td >2021-11</td>
-                    <td><a>编辑</a> <a>  </a> <a>查看</a></td>
-					
-					</tr>
-				</tbody>
-			</table>
-						<p></p>
+	
 					</div>
 				</div>
 			</div>

@@ -69,6 +69,7 @@ public class ServerlistController {
 	@GetMapping("/server/update")
 	public String update(HttpServletRequest r, Model model) throws Exception {
 		Serverlist server = new Serverlist();
+		Serverlist server1 = new Serverlist();
 		String preid = r.getParameter("id");
 			int id = Integer.parseInt(preid);
 				server.setId(id);
@@ -83,7 +84,14 @@ public class ServerlistController {
 		server.setGpuuser(r.getParameter("gpuuser"));
 		server.setHealthystatus(r.getParameter("healthystatus"));
 		model.addAttribute("server", server);
+		
+
+		
+		
+		
 		return "/add";
+		
+		
 	}
 	
 	
@@ -180,22 +188,22 @@ public class ServerlistController {
 //		
 //	}
 	@GetMapping("/server/search")
-	  public String searchlist(@RequestParam(required = false,defaultValue = "type",name = "type")
-	            @RequestParam(required = false,defaultValue = "")String type,
-	            Model model) {
+	public String searchlist(HttpServletRequest r, Model model) throws Exception {
 	    Map<String,Object> searchParam = new HashMap<>();
 //	    searchParam.put("productName",productName);
 //	    searchParam.put("place",place);
-	    searchParam.put("type",dell);
-	 //   model.addAttribute("pageInfo",pageInfo);
-	    model.addAttribute(searchParam);
+	    searchParam.put("type","dell");
+	    List<Serverlist> list = mapper.queryBytype();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Serverlist serverlist = (Serverlist) iterator.next();
+			System.out.println(serverlist.toString());
+		}
+		model.addAttribute("serverlist", list);
 	    return "/search";
 	  }
 	
 	
-	
-	
-	
+
 
 	// 增
 	// 删
