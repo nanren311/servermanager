@@ -3,6 +3,7 @@ package com.test.server.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -21,9 +22,19 @@ public interface ServerlistMapper extends BaseMapper<Serverlist> {
 	@Select(value = {"select * from  serverlist;"})
 	List<Serverlist> queryAll();
 
-	@Select(value = {"select * from  serverlist where type = 'dell';"})
-	List<Serverlist> queryBytype();	
-	
+	@Select("select * from  serverlist where location=#{location}")
+
+	List<Serverlist> queryListByLocation(String location);
+
+	@Select("select * from  serverlist where type=#{type}")
+
+	List<Serverlist> queryListByType(String type);
+
+	@Select("select * from  serverlist where location=#{location} and type=#{type} ")
+
+	List<Serverlist> queryListByParam(String location,String type);
+
+
 	@Select(value = {"select count(id)  from  serverlist;"})
 	int queryCount();
 }

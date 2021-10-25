@@ -8,18 +8,14 @@
      *
     FROM
       serverlist
-      where serverlist.type=dell
-<!-- 注释 -->
-<!--    <where>
+
+    <where>
       <if test="type != null and type != ''">
         serverlist.type LIKE concat('%',#{type},'%')
-        and serverlist.location LIKE '上海'
       </if>
 
     </where>
     ORDER BY id DESC
-    -->
-    <!-- 注释 -->
 </select>
 
 

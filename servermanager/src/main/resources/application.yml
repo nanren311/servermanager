@@ -17,6 +17,11 @@ spring:
     username: admin
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
   thymeleaf:
     mode: HTML5
     encoding: UTF-8
@@ -25,7 +30,7 @@ spring:
     check-template-location: true
     cache: false
   mvc:
-    static-path-pattern: /*
+    static-path-pattern: /static/**
     async:
       request-timeout: 20000
 

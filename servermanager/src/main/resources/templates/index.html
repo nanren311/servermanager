@@ -1,222 +1,200 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<!--  <meta http-equiv="refresh" content="50">-->
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--  <meta http-equiv="refresh" content="50">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-	<meta charset="utf-8"> 
-	<title>资源列表页</title>
-	<!-- bootstrap 依赖 start-->
- <link rel="stylesheet"
-	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-<script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="utf-8">
+    <title>资源列表页</title>
+    <!-- bootstrap 依赖 start-->
+    <link rel="stylesheet"
+          href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-<!--时间格式-->
+    <!--时间格式-->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 
 
+    <!-- bootstrap 依赖 end-->
+    <!-- 引入 Bootstrap样式 -->
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap-select样式 -->
+    <link href="${pageContext.request.contextPath}/resources/css/select/bootstrap-select.min.css" rel="stylesheet">
 
-	<!-- bootstrap 依赖 end-->
- <!-- 引入 Bootstrap样式 -->
-      <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-     <!-- bootstrap-select样式 -->
-      <link href="${pageContext.request.contextPath}/resources/css/select/bootstrap-select.min.css" rel="stylesheet">
- 
-     <!-- jQuery (Bootstrap 依赖于 jQuery) -->
-      <script src="${pageContext.request.contextPath}/resources/js/jquery-3.0.0.min.js"></script><br>
-     <!-- Bootstrap -->
-       <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
- 
-     <!-- Bootstrap-select 控件 -->
-       <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
-       <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script><br><br>
+    <!-- jQuery (Bootstrap 依赖于 jQuery) -->
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.0.0.min.js"></script>
+    <br>
+    <!-- Bootstrap -->
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 
+    <!-- Bootstrap-select 控件 -->
+    <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script>
+    <br><br>
 </head>
 <body>
+<div id ="app">
+    <div class="container">
+        <div th:replace="header :: header"></div>
+    </div>
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <form action="/server/search" method="GET">
+                                <span class="input-group-addon">归属地</span>
+                                <select class="form-control selectpicker show-tick" data-size="6"
+                                        data-live-search="true" id="location" name="location" title="请选择"
+                                        value="${location}">
+                                    <option  th:selected="${location ==''}"  value="">请选择</option>
+                                    <option  th:selected="${location =='上海'}"  value="上海">上海</option>
+                                    <option  th:selected="${location =='北京'}" value="北京">北京</option>
 
-			
+                                </select>
+
+                                <p></p>
+                                <form action="/server/search" method="GET">
+                                    <span class="input-group-addon">服务器品牌</span>
+                                    <select class="form-control selectpicker show-tick" data-size="6"
+                                            data-live-search="true" id="type" name="type" title="请选择" value="${type}">
+
+                                        <option  th:selected="${type ==''}"  value="">请选择</option>
+                                        <option th:selected="${type =='dell'}" value="dell">dell</option>
+                                        <option th:selected="${type =='浪潮'}" value="浪潮">浪潮</option>
+
+                                    </select>
+                                </form>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">搜索</button>
+                       <button type="reset" onclick="" class="btn btn-primary">重置</button>
+
+                    </div>
+                </form>
+
+                <!-- 搜索框 get请求 根据商品名称的关键字进行搜索-->
+                <!--
+                <form action="/server/search" method="GET" >
+                  <input type="text" name="servertype" placeholder="品牌" class="form-control" value="${server.type}">
+                  <button class="btn btn-primary">查询</button>
+                </form>
+                    -->
+
+                <p>
+                </p>
+<br></br>
+
+                <h4> 服务器总数：<a th:text="${count}"></a>台 </h4>
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th>
+                            编号
+                        </th>
+                        <th>
+                            服务器名称
+                        </th>
+                        <th>
+                            闲忙状态
+                        </th>
+                        <th>
+                            服务器使用人
+                        </th>
+                        <th>
+                            品牌
+                        </th>
+                        <th>
+                            归属地
+                        </th>
+
+                        <th>
+                            预占开始时间
+                        </th>
+                        <th>
+                            预占结束时间
+                        </th>
+                        <th>
+                            显卡品牌
+                        </th>
+                        <th>
+                            部门
+                        </th>
+                        <th>
+                            健康状态
+                        </th>
+                        <th>
+                            管理
+
+                    </tr>
+                    </thead>
 
 
+                    <tbody>
+                    <tr th:each="server: ${serverlist}">
+                        <td th:text="${server.id}"></td>
+                        <td th:text="${server.servername}">Onions</td>
+                        <td th:text="使用中">Onions</td>
 
-	
-<div class="container">
-	     <div th:replace="header :: header"></div>
+                        <td th:text="${server.serveruser}">Onions</td>
+                        <td th:text="${server.type}">Onions</td>
+                        <td th:text="${server.location}">Onions</td>
 
+                        <td th:text="${server.serverstarttime}">Onions</td>
+                        <td th:text="${server.serverendtime}">Onions</td>
+                        <td th:text="${server.gputype}">Onions</td>
+                        <td th:text="${server.gpuuser}">Onions</td>
+                        <td th:text="${server.healthystatus}">Onions</td>
+                        <td>
+                            <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
+                               target="_self">编辑</a> <a> </a>&nbsp; <a> </a> <a
+                                th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
+                                target="_self">查看</a></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                </p>
+            </div>
+            <div class="tab-pane active" id="panel-978340">
+                <p>
+
+
+                    <tbody>
+                    <tr>
+
+            </div>
+        </div>
+    </div>
+
+
+    </form>
+</div>
+</div>
 </div>
 
 
-	
-	<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-		
-	
-
-
-
-	
-	
-
-
-<form class="navbar-form navbar-left" role="search">
-
- 
-       <div class="form-group">    
-       <div class="input-group">
-       
-          
-       <!-- 注释所在地 start-->
- <!--      <form action="/server/search" method="GET" >      
-          <span class="input-group-addon" >所在地</span>
- 
- 
- 
-          <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="location"  name="location" title="请选择" value ="${server.location}" > 
-
-                <option value="上海">上海</option>
-                <option value="北京">北京</option>
-           
-          </select>
-          -->
-           <!-- 注释所在地 end--> 
-<p> </p>
-                 <form action="/server/search" method="GET" >      
-          <span class="input-group-addon" >服务器名称</span>
-          <select  class="form-control selectpicker show-tick" data-size="6" data-live-search="true"  id="type"  name="type" title="请选择" value ="${server.type}" > 
-
-                <option value="dell">dell</option>
-                <option value="浪潮">浪潮</option>
-           
-          </select>
-          </form>
-       </div>
-       <td><a th:href="@{/server/search/}" target="_self">查询</a></td>
-       
-          <button type="submit" class="btn btn-primary">搜索</button> 
-          <button type="submit" class="btn btn-primary">重置</button>
-          
-    </div> 
-   </form>
-
- <!-- 搜索框 get请求 根据商品名称的关键字进行搜索-->
-<!--
-<form action="/server/search" method="GET" >
-  <input type="text" name="servertype" placeholder="品牌" class="form-control" value="${server.type}">
-  <button class="btn btn-primary">查询</button>
-</form>  
-    -->
-
-       <p> </p>
-   
-		
-<h4>	服务器总数：<a th:text="${count}" ></a>台  </h4>
-			<table class="table ">
-				<thead>
-					<tr>
-						<th>
-							编号
-						</th>
-						<th>
-							服务器名称
-						</th>
-						                    <th>
-							闲忙状态
-						</th>
-						<th>
-							服务器使用人
-						</th>
-						<th>
-							品牌
-						</th>
-						<th>
-							归属地
-						</th>
-												
-						<th>
-							预占开始时间
-						</th>
-						<th>
-							预占结束时间
-						</th>
-												<th>
-							显卡品牌
-						</th>
-												<th>
-							部门
-						</th>
-						                        <th>
-							健康状态
-						</th>
-												<th>
-							管理
-
-					</tr>
-				</thead>
-												
-				
-				<tbody>
-					<tr th:each="server: ${serverlist}">
-					<td th:text="${server.id}"></td>  
-					<td th:text="${server.servername}">Onions</td>
-					<td th:text="使用中">Onions</td>
-
-					<td th:text="${server.serveruser}">Onions</td> 
-					<td th:text="${server.type}">Onions</td>  
-					<td th:text="${server.location}">Onions</td>  
-
-					<td th:text="${server.serverstarttime}">Onions</td> 
-					<td th:text="${server.serverendtime}">Onions</td>  
-					<td th:text="${server.gputype}">Onions</td>  
-					<td th:text="${server.gpuuser}">Onions</td>
-					<td th:text="${server.healthystatus}">Onions</td>  
-                    <td><a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">编辑</a>  <a>  </a>&nbsp; <a>  </a>    <a th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}" target="_self">查看</a></td>
-					
-					</tr>
-				</tbody>
-			</table>
-						<p>
-						</p>
-					</div>
-					<div class="tab-pane active" id="panel-978340">
-						<p>
-	
-												
-				
-				<tbody>
-				<tr>
-	
-					</div>
-				</div>
-			</div>
-
-
-	
-	
-	
-	
-
-	
-		
-
-
-			</form>
-		</div>
-	</div>
 </div>
-	
-	
-   <!--引入共有底部
-    <div th:replace="footer :: footer"> </div>-->
-    <!--消息盒子+反馈-->
+<script type="text/javascript" >
+   function clear(){
+        document.getElementById("location").value = '';
+        document.getElementById("type").value = '';
+    }
+</script>
+<!--引入共有底部
+ <div th:replace="footer :: footer"> </div>-->
+<!--消息盒子+反馈-->
 </body>
 </html>
