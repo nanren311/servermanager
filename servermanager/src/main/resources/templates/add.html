@@ -110,7 +110,7 @@
 						<td ><input type="text" class="form-control" id="id"  name="id" th:value="${server.id}"
 				   placeholder="自动生成"></td>   
 					<td ><input type="text" class="form-control" id="servername"  name="servername" th:value="${server.servername}"
-				   placeholder="请输入名称"></td>  
+								readonly th:title="${server.servername}" placeholder="请输入名称"></td>
 				   <td ><input type="text" class="form-control" id="serveruser"  name="serveruser"  th:value="${server.serveruser}"
 				   placeholder="请输入服务器使用人"></td>  
 					<td ><input type="text" class="form-control" id="type"  name="type"  th:value="${server.type}"

@@ -1,12 +1,18 @@
-import java.util.List;
-import com.test.server.controller.*;
+package com.test.server.entity;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import java.io.Serializable;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-public class Serverlisthistory {
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author chaowu
+ * @since 2021-09-30
+ */
+
+public class ServerlistHis implements Serializable {
+
 	public static final long serialVersionUID = 1L;
 	public int id;
 
@@ -114,10 +120,9 @@ public class Serverlisthistory {
 
 	@Override
 	public String toString() {
-		return "Serverlisthistory [id=" + id + ", servername=" + servername + ", serveruser=" + serveruser + ", type="
+		return "Serverlisthis [id=" + id + ", servername=" + servername + ", serveruser=" + serveruser + ", type="
 				+ type + ", location=" + location + ", serverreservetime=" + serverreservetime + ",serverstarttime=" + serverstarttime + ", serverendtime=" + serverendtime + ", gputype=" + gputype
 				+ ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + "]";
 	}
-	
 
 }

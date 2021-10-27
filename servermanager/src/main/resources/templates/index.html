@@ -41,6 +41,13 @@
     <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script>
     <br><br>
+    <script type="text/javascript" >
+        function clear(){
+            alert();
+            document.getElementById("location").value = '';
+            document.getElementById("type").value = '';
+        }
+    </script>
 </head>
 <body>
 <div id ="app">
@@ -59,13 +66,23 @@
                                         data-live-search="true" id="location" name="location" title="请选择"
                                         value="${location}">
                                     <option  th:selected="${location ==''}"  value="">请选择</option>
+                                    <div>and</div>
                                     <option  th:selected="${location =='上海'}"  value="上海">上海</option>
                                     <option  th:selected="${location =='北京'}" value="北京">北京</option>
 
                                 </select>
-
+                                
+                           
+                              
                                 <p></p>
+                            
                                 <form action="/server/search" method="GET">
+                                    <span class="input-group-addon">and</span>
+                                   
+                                    
+                                    
+                                    
+                                     <form action="/server/search" method="GET">
                                     <span class="input-group-addon">服务器品牌</span>
                                     <select class="form-control selectpicker show-tick" data-size="6"
                                             data-live-search="true" id="type" name="type" title="请选择" value="${type}">
@@ -75,12 +92,35 @@
                                         <option th:selected="${type =='浪潮'}" value="浪潮">浪潮</option>
 
                                     </select>
+                                    
+                                                                    <form action="/server/search" method="GET">
+                                    <span class="input-group-addon">and</span>
+                                   
+                                    
+                                    
+                                    
+                                     <form action="/server/search" method="GET">
+                                    <span class="input-group-addon">空闲状态</span>
+                                    <select class="form-control selectpicker show-tick" data-size="6"
+                                            data-live-search="true" id="status" name="status" title="请选择" value="${status}">
+
+                                        <option  th:selected="${status ==''}"  value="">请选择</option>
+                                        <option th:selected="${status =='空闲'}" value="空闲">空闲</option>
+                                        <option th:selected="${status =='使用中'}" value="使用中">使用中</option>
+
+                                    </select>
+                                   
+                          <p></p>
+                                   
+                                   
                                 </form>
+                                
+                                
                         </div>
 
                         <button type="submit" class="btn btn-primary">搜索</button>
-                       <button type="reset" onclick="" class="btn btn-primary">重置</button>
-
+                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';" class="btn btn-primary" value="重置">
+                        <input type="hidden" id="isHis" name="isHis" th:value="${isHis}">
                     </div>
                 </form>
 
@@ -92,9 +132,8 @@
                 </form>
                     -->
 
-                <p>
-                </p>
-<br></br>
+                <p></p>
+
 
                 <h4> 服务器总数：<a th:text="${count}"></a>台 </h4>
                 <table class="table ">
@@ -157,10 +196,14 @@
                         <td th:text="${server.gpuuser}">Onions</td>
                         <td th:text="${server.healthystatus}">Onions</td>
                         <td>
-                            <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
-                               target="_self">编辑</a> <a> </a>&nbsp; <a> </a> <a
+                          <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
+                               target="_self" th:if="${isHis} ne 'his'" >编辑</a>
+                            <a
                                 th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
-                                target="_self">查看</a></td>
+                                target="_self">查看</a>
+                                <a
+                                th:href="@{/server/chakana/(servername=${server.servername})}"
+                                target="_self">查看历史</a></td>
 
                     </tr>
                     </tbody>
@@ -187,12 +230,7 @@
 
 
 </div>
-<script type="text/javascript" >
-   function clear(){
-        document.getElementById("location").value = '';
-        document.getElementById("type").value = '';
-    }
-</script>
+
 <!--引入共有底部
  <div th:replace="footer :: footer"> </div>-->
 <!--消息盒子+反馈-->

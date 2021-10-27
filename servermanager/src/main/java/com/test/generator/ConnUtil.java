@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnUtil {
 	private final static String DRIVER = "com.mysql.jdbc.Driver";
-	private final static String URL = "jdbc:mysql://127.0.0.1:3306/mechine?useUnicode=true&characterEncoding=utf-8";
+	private final static String URL = "jdbc:mysql://10.44.166.76:3306/mechine?useUnicode=true&characterEncoding=utf-8";
 	private final static String USERNAME = "admin";// 数据库登录用户名
-	private final static String PASSWORD = "123456";// 数据登录密码
+	private final static String PASSWORD = "admin123";// 数据登录密码
 
 	private static Connection conn;
 

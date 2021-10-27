@@ -2,6 +2,7 @@ package com.test.server.mapper;
 
 import java.util.List;
 
+import com.test.server.entity.ServerlistHis;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -37,4 +38,8 @@ public interface ServerlistMapper extends BaseMapper<Serverlist> {
 
 	@Select(value = {"select count(id)  from  serverlist;"})
 	int queryCount();
+
+	@Select("select * from  serverlist where id=#{id}")
+	Serverlist selectById(int id);
+
 }
