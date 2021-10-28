@@ -94,6 +94,7 @@
                                     </select>
                                     
                                                                     <form action="/server/search" method="GET">
+                                  <a> </a>
                                     <span class="input-group-addon">and</span>
                                    
                                     
@@ -134,6 +135,7 @@
 
                 <p></p>
 
+<br></br>
 
                 <h4> 服务器总数：<a th:text="${count}"></a>台 </h4>
                 <table class="table ">
@@ -208,6 +210,72 @@
                     </tr>
                     </tbody>
                 </table>
+                
+                <br></br>
+
+                <h4> 显卡总数：<a th:text="4"></a>台 </h4>
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th>
+                            编号
+                        </th>
+                        <th>
+                            显卡归属地
+                        </th>
+                        <th>
+                            显卡编码
+                        </th>
+                        <th>
+                            显卡品牌
+                        </th>
+                        <th>
+                            使用人
+                        </th>
+                        <th>
+                            健康状态
+                        </th>
+                        <th>
+                            闲忙状态
+                        </th>
+                        <th>
+                            预占开始时间
+                        </th>
+                        <th>
+                            预占结束时间
+                        </th>
+
+                        <th>
+                            管理
+
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                    <tr th:each="gpu: ${serverlist}">
+                        <td th:text="1"></td>
+                        <td th:text="2">Onions</td>
+                        <td th:text="3">Onions</td>
+                        <td th:text="4">Onions</td>
+                        <td th:text="5">Onions</td>
+                        <td th:text="6">Onions</td>
+                        <td th:text="7">Onions</td>
+                        <td th:text="8">Onions</td>
+                        <td th:text="9">Onions</td>
+
+                        <td>
+                          <a  >编辑</a>
+                            <a
+                                >查看</a>
+                                <a
+                                >查看历史</a></td>
+                                 
+
+                    </tr>
+                    </tbody>
+                </table>
+                
                 <p>
                 </p>
             </div>

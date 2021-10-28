@@ -93,9 +93,7 @@
 			<th>
 				服务器名称
 			</th>
-			<th>
-				闲忙状态
-			</th>
+
 			<th>
 				服务器使用人
 			</th>
@@ -128,7 +126,6 @@
 		<tbody>
 		<tr th:each="server: ${serverlistHis}">
 			<td th:text="${server.servername}">Onions</td>
-			<td th:text="使用中">Onions</td>
 
 			<td th:text="${server.serveruser}">Onions</td>
 			<td th:text="${server.type}">Onions</td>

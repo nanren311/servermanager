@@ -12011,4 +12011,39 @@
 
   return Vue;
 
+ $("#mStartTimeDiv").datetimepicker({
+                language: 'zh-CN',
+                format: "yyyy-mm-dd",
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                endDate: $("#end").val()
+            }).on('changeDate', function (ev) {
+                var startTime = $("#StartTime").val();
+                $("#mEndTimeDiv").datetimepicker("setStartDate", startTime.toString("yyyy-MM-dd"));
+                queryFunc();
+            });
+            $("#mEndTimeDiv").datetimepicker({
+                language: 'zh-CN',
+                format: "yyyy-mm-dd",
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                startDate: $("#start").val()
+            }).on('changeDate', function (ev) {
+                var endTime = $("#EndTime").val();
+                $("#mStartTimeDiv").datetimepicker("setEndDate", endTime.toString("yyyy-MM-dd"));
+                queryFunc();
+                });
+
+
+
+
+
 }));
