@@ -18,7 +18,7 @@ public class ServerlistHis implements Serializable {
 
 	public String servername;
 	public String serveruser;
-
+	public String status;
 	public String type;
 
 	public String location;
@@ -46,6 +46,13 @@ public class ServerlistHis implements Serializable {
 		this.serveruser = serveruser;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getType() {
 		return type;
 	}

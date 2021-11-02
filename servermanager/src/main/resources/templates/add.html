@@ -219,12 +219,12 @@
 $(function () { 
 	 var picker1 = $('#datetimepicker1').datetimepicker({ 
 	 format: 'YYYY-MM-DD', 
-	 locale: moment.locale('zh-cn'), 
+	 locale: moment.datetimepicker2,
 	 //minDate: '2016-7-1' 
 	 }); 
 	 var picker2 = $('#datetimepicker2').datetimepicker({ 
 	 format: 'YYYY-MM-DD', 
-	 locale: moment.locale('zh-cn') 
+	 locale: moment.datetimepicker2,
 	 }); 
 	 //动态设置最小值 
 	 picker1.on('dp.change', function (e) { 
@@ -234,9 +234,41 @@ $(function () {
 	 picker2.on('dp.change', function (e) { 
 	 picker1.data('DateTimePicker').maxDate(e.date); 
 	 }); 
+	 
+	 var nowdate = new Date();
+	 this.year = nowdate.getFullYear();
+	 this.month = nowdate.getMonth()+1;
+	 this.date= nowdate.getDate();
+	 var curdate = this.year + '/'+ this.month + '/' + this.date;
+	 
+	 alert(curdate);
+
+	 var date1 = picker1.replace(/-/g,'/');
+	 var date2 = picker2.replace(/-/g,'/');
+	 var date3 = curdate.replace(/-/g,'/');
+	 var timestamp1 = new Date(date1).getTime();
+	 var timestamp2 = new Date(date2).getTime();
+	 var timenow = new Date(date3).getTime();
+
+	 
+	 if(date1=null){
+		 server.status="空闲";
+	 } 
+	 if(timestamp2<timenow){
+		 server.status="空闲";
+		 
+		 
+	 }
+	 else{
+			 server.status="使用中";
+			 
+		 }
+
+
+	 
+	 
 	}); 
-    
-    
+	
 
 
     

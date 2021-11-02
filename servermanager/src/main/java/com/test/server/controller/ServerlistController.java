@@ -1,5 +1,8 @@
 package com.test.server.controller;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -50,6 +53,18 @@ public class ServerlistController {
         String location = request.getParameter("location");
         String type = request.getParameter("type");
         String isHis = request.getParameter("isHis");
+        String newStart = request.getParameter("serverstarttime");
+        
+        if (newStart =="" ) {
+        	server.setStatus("空闲");
+        	
+        }else {
+        	server.setStatus("使用中");
+        	
+        }
+        
+        System.out.println("=================");
+        
         List<Serverlist> list;
         List<ServerlistHis> listHis;
         if(!"his".equals(isHis)){
@@ -86,11 +101,27 @@ public class ServerlistController {
     }
 
     @GetMapping("/index")
-    public String index(Model model) throws Exception {
+    public String index(HttpServletRequest r,Model model,Serverlist server) throws Exception {
+
         List<Serverlist> list = mapper.queryAll();
         for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+
             Serverlist serverlist = (Serverlist) iterator.next();
+          
             System.out.println(serverlist.toString());
+        }
+        String newStart = r.getParameter("serverstarttime");
+  
+    
+        
+        System.out.println(newStart);
+        
+        
+        if (newStart =="") {
+        	server.setStatus("空闲");
+        	
+        }else {
+        	server.setStatus("使用中");
         }
         model.addAttribute("serverlist", list);
         return "/index";
@@ -111,15 +142,29 @@ public class ServerlistController {
 
     @GetMapping("/server/update")
     public String update(HttpServletRequest r, Model model) throws Exception {
+    	Date date = new Date();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	
+    	System.out.println("当前时间"+ simpleDateFormat.format(date));
+    	String dateStr = simpleDateFormat.format(date);
+
+        String newdate = dateStr.replaceAll("[[\\s-:punct:]]","");
+        int dateNum = Integer.parseInt(newdate);
+        
+ 
+    	
+    	
         Serverlist server = new Serverlist();
         String preid = r.getParameter("id");
         int id = Integer.parseInt(preid);
         server.setId(id);
         server.setServername(r.getParameter("servername"));
         server.setServeruser(r.getParameter("serveruser"));
+        server.setStatus(r.getParameter("status"));
         server.setType(r.getParameter("type"));
         server.setLocation(r.getParameter("location"));
         server.setServerreservetime(r.getParameter("serverreservetime"));
+
         server.setServerstarttime(r.getParameter("serverstarttime"));
         server.setServerendtime(r.getParameter("serverendtime"));
         server.setGputype(r.getParameter("gputype"));
@@ -132,6 +177,9 @@ public class ServerlistController {
 
     @GetMapping("/server/addnewserver")
     public String add(HttpServletRequest r, Model model) throws Exception {
+    	Date date = new Date();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	System.out.println("当前时间"+ simpleDateFormat.format(date));
         String preid = r.getParameter("id");
         boolean flag = false;//false means update
         if (preid != "") {
@@ -141,6 +189,7 @@ public class ServerlistController {
             ServerlistHis hisServer = new ServerlistHis();
             hisServer.setServername(tempServer.getServername());
             hisServer.setServeruser(tempServer.getServeruser());
+            hisServer.setStatus(tempServer.getStatus());
             hisServer.setType(tempServer.getType());
             hisServer.setLocation(tempServer.getLocation());
             hisServer.setServerreservetime(tempServer.getServerreservetime());
@@ -169,6 +218,7 @@ public class ServerlistController {
             server.setId(id);
             server.setServername(r.getParameter("servername"));
             server.setServeruser(r.getParameter("serveruser"));
+            server.setStatus(r.getParameter("status"));
             server.setType(r.getParameter("type"));
             server.setLocation(r.getParameter("location"));
             server.setServerreservetime(r.getParameter("serverreservetime"));
@@ -186,6 +236,7 @@ public class ServerlistController {
             Serverlist server = new Serverlist();
             server.setServername(r.getParameter("servername"));
             server.setServeruser(r.getParameter("serveruser"));
+            server.setStatus(r.getParameter("status"));
             server.setType(r.getParameter("type"));
             server.setLocation(r.getParameter("location"));
             server.setServerreservetime(r.getParameter("serverreservetime"));
@@ -216,10 +267,50 @@ public class ServerlistController {
         server.setId(id);
         server.setServername(r.getParameter("servername"));
         server.setServeruser(r.getParameter("serveruser"));
+        server.setStatus(r.getParameter("status"));
         server.setType(r.getParameter("type"));
         server.setLocation(r.getParameter("location"));
         server.setServerreservetime(r.getParameter("serverreservetime"));
         server.setServerstarttime(r.getParameter("serverstarttime"));
+        
+        String newStart = r.getParameter("serverstarttime");
+     
+        System.out.println(newStart);
+        if (newStart =="" ) {
+        	server.setStatus("空闲");
+        	
+        } 
+        else {
+        
+        Date date = new Date();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	
+    	System.out.println("当前时间"+ simpleDateFormat.format(date));
+    	String dateStr = simpleDateFormat.format(date);
+
+        String newdate = dateStr.replaceAll("[[\\s-:punct:]]","");
+        int dateNum = Integer.parseInt(newdate);
+        
+      String endTime = r.getParameter("serverendtime");
+      String newEnd = endTime.replaceAll("[[\\s-:punct:]]","");
+      
+  //    System.out.println(startTime);
+      int endNum = Integer.parseInt(newEnd);
+      System.out.println(dateNum); 
+      System.out.println(endNum); 
+      
+       if(endNum<dateNum) {
+        	server.setStatus("空闲");
+        }
+        
+        else{
+        	server.setStatus("使用中");
+        }
+        }
+
+        System.out.println(server.status);
+        System.out.println("加油");
+        System.out.println(newStart);
         server.setServerendtime(r.getParameter("serverendtime"));
         server.setGputype(r.getParameter("gputype"));
         server.setGpuuser(r.getParameter("gpuuser"));

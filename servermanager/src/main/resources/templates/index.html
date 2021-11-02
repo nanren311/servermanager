@@ -186,7 +186,7 @@
                     <tr th:each="server: ${serverlist}">
                         <td th:text="${server.id}"></td>
                         <td th:text="${server.servername}">Onions</td>
-                        <td th:text="使用中">Onions</td>
+                        <td th:text="${server.status}">Onions</td>
 
                         <td th:text="${server.serveruser}">Onions</td>
                         <td th:text="${server.type}">Onions</td>
@@ -303,4 +303,54 @@
  <div th:replace="footer :: footer"> </div>-->
 <!--消息盒子+反馈-->
 </body>
+<script type="text/javascript">
+$(function () { 
+	 var picker1 = $('#datetimepicker1').datetimepicker({ 
+	 format: 'YYYY-MM-DD', 
+	 locale: moment.datetimepicker2,
+	 //minDate: '2016-7-1' 
+	 }); 
+	 var picker2 = $('#datetimepicker2').datetimepicker({ 
+	 format: 'YYYY-MM-DD', 
+	 locale: moment.locale
+	 }); 
+	 //动态设置最小值 
+	 picker1.on('dp.change', function (e) { 
+	 picker2.data('DateTimePicker').minDate(e.date); 
+	 }); 
+	 //动态设置最大值 
+	 picker2.on('dp.change', function (e) { 
+	 picker1.data('DateTimePicker').maxDate(e.date); 
+	 }); 
+	 
+	 var date1 = picker1.replace(/-/g,'/');
+	 var date2 = picker2.replace(/-/g,'/');
+	 var timestamp1 = new Date(date1).getTime();
+	 var timestamp2 = new Date(date2).getTime();
+	 var r = timestamp1 > timestamp2;
+
+	 if (r)
+
+	 document.write(date1 + ' > ' + date2);
+
+	 else
+
+	 document.write(date1 + ' <= ' + date2);
+
+	 
+	 
+	}); 
+    
+    
+
+
+    
+    
+
+</script>
+
+
+
+
+
 </html>

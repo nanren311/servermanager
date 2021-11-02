@@ -29,11 +29,11 @@ public interface ServerlistHisMapper extends BaseMapper<ServerlistHis> {
 
 	List<ServerlistHis> queryListByType(String type);
 	
-	@Select("select servername,serveruser,type,location,gputype,gpuuser,healthystatus,serverstarttime,serverendtime from  serverlist_his where servername=#{servername}")
+	@Select("select servername,serveruser,type,location,gputype,gpuuser,healthystatus,serverstarttime,serverendtime from  serverlist_his where servername=#{servername} ORDER BY serverendtime DESC")
 
 	List<ServerlistHis> queryListByServername(String servername);
 
-	@Select("select * from  serverlist_his where location=#{location} and type=#{type} ")
+	@Select("select * from  serverlist_his where location=#{location} and type=#{type} ORDER BY serverendtime DESC ")
 
 	List<ServerlistHis> queryListByParam(String location,String type);
 
@@ -41,6 +41,6 @@ public interface ServerlistHisMapper extends BaseMapper<ServerlistHis> {
 	@Select(value = {"select count(id)  from  serverlist_his;"})
 	int queryCount();
 
-	@Select("select * from  serverlist_his where id=#{id}")
+	@Select("select * from  serverlist_his where id=#{id} ")
 	ServerlistHis selectById(int id);
 }
