@@ -267,7 +267,7 @@ public class ServerlistController {
         server.setId(id);
         server.setServername(r.getParameter("servername"));
         server.setServeruser(r.getParameter("serveruser"));
-        server.setStatus(r.getParameter("status"));
+
         server.setType(r.getParameter("type"));
         server.setLocation(r.getParameter("location"));
         server.setServerreservetime(r.getParameter("serverreservetime"));
@@ -316,6 +316,7 @@ public class ServerlistController {
         server.setGpuuser(r.getParameter("gpuuser"));
         server.setHealthystatus(r.getParameter("healthystatus"));
         model.addAttribute("server", server);
+        mapper.updateById(server);
         return "/chakan";
     }
 
