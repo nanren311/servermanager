@@ -41,6 +41,14 @@
     <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script>
     <br><br>
+    <style>
+        .redColor{
+            color: red;
+        }
+        .greenColor{
+            color: green;
+        }
+    </style>
     <script type="text/javascript" >
         function clear(){
             alert();
@@ -113,6 +121,7 @@
 
                                         <option  th:selected="${gputype ==''}"  value="">请选择</option>
                                         <option th:selected="${gputype =='nvd'}" value="nvd">nvd</option>
+                                        <option th:selected="${gputype =='amd'}" value="amd">amd</option>
                                         <option th:selected="${gputype =='h3'}" value="h3">h3</option>
 
                                     </select>
@@ -156,8 +165,7 @@
                         <th>
                             服务器名称
                         </th>
-                        <th>闲忙状态
-                        </th>
+                        <th data-field="report_state" data-sortable="true" data-formatter="displaycolor">闲忙状态</th>
                         <th>
                             服务器使用人
                         </th>
@@ -194,7 +202,7 @@
                     <tr th:each="server: ${serverlist}">
                         <td th:text="${server.id}"></td>
                         <td th:text="${server.servername}">Onions</td>
-                      <td th:style="${server.status}=='1'?'color:blue':'color:red'" th:text="${server.status}" ${server.status}=='使用中'?'使用中':'空闲'>Onions</td>                  
+                      <td th:text="${server.status}" class="statusName">Onions</td>                  
                      
                     <!--        <td style="color:blue" th:text="${server.status}" ${server.status}=='1'?'使用中':'空闲'>Onions</td>  -->
 
@@ -208,7 +216,7 @@
                         <td th:text="${server.serverendtime}">Onions</td>
                         <td th:text="${server.gputype}">Onions</td>
                         <td th:text="${server.gpuuser}">Onions</td>
-                        <td th:text="${server.healthystatus}">Onions</td>
+                        <td th:text="${server.healthystatus}" class="healthystatusName">Onions</td>
                         <td>
                           <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
                                target="_self" th:if="${isHis} ne 'his'" >编辑</a>
@@ -220,9 +228,6 @@
                                 target="_self">查看历史</a></td>
 
                     </tr>
-                    
-                    
- 
                     
                     </tbody>
                 </table>
@@ -328,7 +333,7 @@
 <!--消息盒子+反馈-->
 </body>
 <script type="text/javascript">
-window.onload=function(){a();b();c()}
+window.onload=function(){b();c();a();}
 
 
 
@@ -373,9 +378,31 @@ function a() {
 	}
 	
 
+function b(){
+        $(".statusName").each(function(){
+		let text = $(this).text()
+        if(text == "使用中") {
+            $(this).addClass('redColor')
+        }else {
+            $(this).addClass('greenColor')
+        }
+	});
 
+       
+}
     
+function c(){
+        $(".healthystatusName").each(function(){
+		let text = $(this).text()
+        if(text == "坏") {
+            $(this).addClass('redColor')
+        }else {
+            $(this).addClass('greenColor')
+        }
+	});
 
+       
+}
 
     
     
@@ -383,6 +410,12 @@ function a() {
 </script>
 
 
+<script type="text/javascript">
+	
+		
+
+
+	</script>  
 
 
 </html>
