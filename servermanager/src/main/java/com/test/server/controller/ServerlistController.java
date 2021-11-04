@@ -97,6 +97,7 @@ public class ServerlistController {
         model.addAttribute("location", location);
         model.addAttribute("type", type);
         model.addAttribute("isHis", isHis);
+        mapper.updateById(server);
         return "/index";
     }
 
@@ -110,20 +111,9 @@ public class ServerlistController {
           
             System.out.println(serverlist.toString());
         }
-        String newStart = r.getParameter("serverstarttime");
-  
-    
-        
-        System.out.println(newStart);
-        
-        
-        if (newStart =="") {
-        	server.setStatus("空闲");
-        	
-        }else {
-        	server.setStatus("使用中");
-        }
+
         model.addAttribute("serverlist", list);
+        mapper.updateById(server);
         return "/index";
     }
 

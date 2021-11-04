@@ -19,6 +19,14 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
           rel="stylesheet">
+          <style>
+.greenStatus{
+    color: green;
+}
+.redStatus{
+    color: red;
+}
+          </style>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
@@ -48,14 +56,8 @@
             document.getElementById("type").value = '';
         }
     </script>
-    
-
 </head>
 <body>
-
-
-
-
 <div id ="app">
     <div class="container">
         <div th:replace="header :: header"></div>
@@ -72,7 +74,7 @@
                                         data-live-search="true" id="location" name="location" title="请选择"
                                         value="${location}">
                                     <option  th:selected="${location ==''}"  value="">请选择</option>
-                                    <div >and</div>
+                                    <div>and</div>
                                     <option  th:selected="${location =='上海'}"  value="上海">上海</option>
                                     <option  th:selected="${location =='北京'}" value="北京">北京</option>
 
@@ -83,7 +85,7 @@
                                 <p></p>
                             
                                 <form action="/server/search" method="GET">
-                                    <span class="input-group-addon" style="background-color:white;border:none;">and</span>
+                                    <span class="input-group-addon">and</span>
                                    
                                     
                                     
@@ -101,19 +103,19 @@
                                     
                                                                     <form action="/server/search" method="GET">
                                   <a> </a>
-                                    <span class="input-group-addon" style="background-color:white;border:none;">and</span>
+                                    <span class="input-group-addon">and</span>
                                    
                                     
                                     
                                     
                                      <form action="/server/search" method="GET">
-                                    <span class="input-group-addon">显卡品牌</span>
+                                    <span class="input-group-addon">空闲状态</span>
                                     <select class="form-control selectpicker show-tick" data-size="6"
-                                            data-live-search="true" id="gputype" name="gputype" title="请选择" value="${gputype}">
+                                            data-live-search="true" id="status" name="status" title="请选择" value="${status}">
 
-                                        <option  th:selected="${gputype ==''}"  value="">请选择</option>
-                                        <option th:selected="${gputype =='nvd'}" value="nvd">nvd</option>
-                                        <option th:selected="${gputype =='h3'}" value="h3">h3</option>
+                                        <option  th:selected="${status ==''}"  value="">请选择</option>
+                                        <option th:selected="${status =='空闲'}" class="greenStatus"  value="空闲">空闲</option>
+                                        <option th:selected="${status =='使用中'}" class="redStatus"  value="使用中">使用中</option>
 
                                     </select>
                                    
@@ -144,9 +146,6 @@
 <br></br>
 
                 <h4> 服务器总数：<a th:text="${count}"></a>台 </h4>
-
-    
-                
                 <table class="table ">
                     <thead>
                     <tr>
@@ -156,7 +155,8 @@
                         <th>
                             服务器名称
                         </th>
-                        <th>闲忙状态
+                        <th>
+                            闲忙状态
                         </th>
                         <th>
                             服务器使用人
@@ -194,15 +194,11 @@
                     <tr th:each="server: ${serverlist}">
                         <td th:text="${server.id}"></td>
                         <td th:text="${server.servername}">Onions</td>
-                      <td th:style="${server.status}=='1'?'color:blue':'color:red'" th:text="${server.status}" ${server.status}=='使用中'?'使用中':'空闲'>Onions</td>                  
-                     
-                    <!--        <td style="color:blue" th:text="${server.status}" ${server.status}=='1'?'使用中':'空闲'>Onions</td>  -->
-
-                      
+                        <td th:text="${server.status}">Onions</td>
 
                         <td th:text="${server.serveruser}">Onions</td>
                         <td th:text="${server.type}">Onions</td>
-                        <td th:text="${server.location}">On ions</td>
+                        <td th:text="${server.location}">Onions</td>
 
                         <td th:text="${server.serverstarttime}">Onions</td>
                         <td th:text="${server.serverendtime}">Onions</td>
@@ -220,10 +216,6 @@
                                 target="_self">查看历史</a></td>
 
                     </tr>
-                    
-                    
- 
-                    
                     </tbody>
                 </table>
                 
@@ -308,32 +300,19 @@
 
 
     </form>
-    
-
-    
 </div>
 </div>
 </div>
 
 
 </div>
-
-
-
-
-
 
 <!--引入共有底部
  <div th:replace="footer :: footer"> </div>-->
 <!--消息盒子+反馈-->
 </body>
 <script type="text/javascript">
-window.onload=function(){a();b();c()}
-
-
-
-
-function a() { 
+$(function () { 
 	 var picker1 = $('#datetimepicker1').datetimepicker({ 
 	 format: 'YYYY-MM-DD', 
 	 locale: moment.datetimepicker2,
@@ -366,14 +345,10 @@ function a() {
 
 	 document.write(date1 + ' <= ' + date2);
 
-
 	 
-	
-
-	}
-	
-
-
+	 
+	}); 
+    
     
 
 
@@ -381,6 +356,7 @@ function a() {
     
 
 </script>
+
 
 
 
