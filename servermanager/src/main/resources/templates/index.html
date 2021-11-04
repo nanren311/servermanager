@@ -234,7 +234,7 @@
                 
                 <br></br>
 
-                <h4> 显卡总数：<a th:text="4"></a>台 </h4>
+                <h4> 显卡总数：<a th:text="${countgpu}"></a>张 </h4>
                 <table class="table ">
                     <thead>
                     <tr>
@@ -274,24 +274,18 @@
 
 
                     <tbody>
-                    <tr th:each="gpu: ${serverlist}">
-                        <td th:text="1"></td>
-                        <td th:text="2">Onions</td>
-                        <td th:text="3">Onions</td>
-                        <td th:text="4">Onions</td>
-                        <td th:text="5">Onions</td>
-                        <td th:text="6">Onions</td>
-                        <td th:text="7">Onions</td>
-                        <td th:text="8">Onions</td>
-                        <td th:text="9">Onions</td>
+                    <tr th:each="gpu: ${gpulist}">
+                        <td th:text="${gpu.id}"></td>
+                        <td th:text="${gpu.gpulocation}">Onions</td>
+                        <td th:text="${gpu.gpunm}">Onions</td>
+                        <td th:text="${gpu.gputype}">Onions</td>
+                        <td th:text="${gpu.gpuuser}">Onions</td>
+                        <td th:text="${gpu.healthystatus}">Onions</td>
+                        <td th:text="${gpu.gpustatus}">Onions</td>
+                        <td th:text="${gpu.gpustarttime}">Onions</td>
+                        <td th:text="${gpu.gpuendtime}">Onions</td>
 
-                        <td>
-                          <a  >编辑</a>
-                            <a
-                                >查看</a>
-                                <a
-                                >查看历史</a></td>
-                                 
+                       
 
                     </tr>
                     </tbody>

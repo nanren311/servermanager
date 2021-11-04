@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.test.server.entity.Serverlist;
 import com.test.server.mapper.ServerlistMapper;
-import com.test.server.mapper.ServerlistHisMapper;
+import com.test.server.mapper.*;
 import com.test.server.entity.*;
 /**
  * <p>
@@ -40,18 +40,21 @@ public class ServerlistController {
 
     @Autowired
     ServerlistMapper mapper;
-
+    @Autowired
+    GpulistMapper gpumapper;
     @Autowired
     ServerlistHisMapper hismapper;
-
+    @Autowired
+    GpulistHisMapper gpuhismapper;
 
 
     @GetMapping("")
-    public String helloWorld(HttpServletRequest request, Model model, Serverlist server) throws Exception {
+    public String helloWorld(HttpServletRequest request, Model model, Serverlist server,Gpulist gpu) throws Exception {
         // List<Serverlist> list = mapper.queryAll();
         //int count = mapper.queryCount();
         String location = request.getParameter("location");
         String type = request.getParameter("type");
+        String gputype = request.getParameter("gputype");
         String isHis = request.getParameter("isHis");
         String newStart = request.getParameter("serverstarttime");
         
@@ -62,23 +65,37 @@ public class ServerlistController {
         	server.setStatus("使用中");
         	
         }
-        
-        System.out.println("=================");
+        List<Gpulist> gpu1 = gpumapper.queryAll();
+        int countgpu = gpumapper.queryCount1();
+
+
         
         List<Serverlist> list;
         List<ServerlistHis> listHis;
         if(!"his".equals(isHis)){
-            if(StringUtils.hasText(location) && StringUtils.hasText(type)){
-                list = mapper.queryListByParam(location,type);
-            }else if (StringUtils.hasText(location) && !StringUtils.hasText(type)){
+            if(StringUtils.hasText(location) && StringUtils.hasText(type)&& StringUtils.hasText(gputype)){
+                list = mapper.queryListBy3Param(location,type,gputype);
+            }else if (StringUtils.hasText(location) && !StringUtils.hasText(type) && !StringUtils.hasText(gputype)){
                 list = mapper.queryListByLocation(location);
-            }else if (!StringUtils.hasText(location) && StringUtils.hasText(type)){
+            }else if (!StringUtils.hasText(location) && !StringUtils.hasText(gputype) && StringUtils.hasText(type)){
                 list = mapper.queryListByType(type);
-            }else{
+            }else if (!StringUtils.hasText(location) && !StringUtils.hasText(type) && StringUtils.hasText(gputype)){
+                list = mapper.queryListByGputype(gputype);
+            }else if (StringUtils.hasText(location) && StringUtils.hasText(type) && !StringUtils.hasText(gputype)){
+                list = mapper.queryListByParam(location,type);
+            }else if (!StringUtils.hasText(location) && StringUtils.hasText(type) && StringUtils.hasText(gputype)){
+                list = mapper.queryListBy2Param(type,gputype);
+            }else if (StringUtils.hasText(location) && !StringUtils.hasText(type) && StringUtils.hasText(gputype)){
+                list = mapper.queryListBy21Param(location,gputype);
+            }
+            
+            else{
                 list = mapper.queryAll();
             }
             model.addAttribute("serverlist", list);
             model.addAttribute("count", list.size());
+            model.addAttribute("gpulist", gpu1);
+            model.addAttribute("countgpu", gpu1.size());
         }else {
             if (StringUtils.hasText(location) && StringUtils.hasText(type)) {
                 listHis = hismapper.queryListByParam(location, type);
@@ -96,13 +113,14 @@ public class ServerlistController {
 
         model.addAttribute("location", location);
         model.addAttribute("type", type);
+        model.addAttribute("gputype", gputype);
         model.addAttribute("isHis", isHis);
         mapper.updateById(server);
         return "/index";
     }
 
     @GetMapping("/index")
-    public String index(HttpServletRequest r,Model model,Serverlist server) throws Exception {
+    public String index(Model model, Serverlist server,Gpulist gpu ) throws Exception {
 
         List<Serverlist> list = mapper.queryAll();
         for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
@@ -111,11 +129,23 @@ public class ServerlistController {
           
             System.out.println(serverlist.toString());
         }
+        List<Gpulist> gpulist = gpumapper.queryAll();
 
         model.addAttribute("serverlist", list);
         mapper.updateById(server);
+        model.addAttribute("gpulist",gpu);
+        gpumapper.updateById(gpu);
         return "/index";
-    }
+
+        	
+        	
+        	
+        }
+        
+        
+        
+        
+    
 
 //	@GetMapping("/server/add")
 //	public String addpages(Model model) throws Exception {
@@ -134,16 +164,13 @@ public class ServerlistController {
     public String update(HttpServletRequest r, Model model) throws Exception {
     	Date date = new Date();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	
-    	System.out.println("当前时间"+ simpleDateFormat.format(date));
+   	
+ 
     	String dateStr = simpleDateFormat.format(date);
 
         String newdate = dateStr.replaceAll("[[\\s-:punct:]]","");
         int dateNum = Integer.parseInt(newdate);
-        
- 
-    	
-    	
+  
         Serverlist server = new Serverlist();
         String preid = r.getParameter("id");
         int id = Integer.parseInt(preid);
@@ -160,7 +187,21 @@ public class ServerlistController {
         server.setGputype(r.getParameter("gputype"));
         server.setGpuuser(r.getParameter("gpuuser"));
         server.setHealthystatus(r.getParameter("healthystatus"));
+        
+        Gpulist gpu = new Gpulist();
+        gpu.setId(id);
+        gpu.setGpulocation(r.getParameter("gpulocation"));
+        gpu.setGpunm(r.getParameter("gpunm"));
+        gpu.setGputype(r.getParameter("gputype"));
+        gpu.setGpuuser(r.getParameter("gpuuser"));
+        gpu.setHealthystatus(r.getParameter("healthystatus"));
+        gpu.setGpustatus(r.getParameter("gpustatus"));
+        gpu.setGpustarttime(r.getParameter("gpustarttime"));
+        gpu.setGpuendtime(r.getParameter("gpuendtime"));
+        
+        
         model.addAttribute("server", server);
+        model.addAttribute("gpu", gpu);
         return "/add";
     }
 

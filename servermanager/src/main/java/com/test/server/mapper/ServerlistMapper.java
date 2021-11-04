@@ -30,10 +30,25 @@ public interface ServerlistMapper extends BaseMapper<Serverlist> {
 	@Select("select * from  serverlist where type=#{type}")
 
 	List<Serverlist> queryListByType(String type);
+	@Select("select * from  serverlist where gputype=#{gputype}")
 
-	@Select("select * from  serverlist where location=#{location} and type=#{type} ")
+	List<Serverlist> queryListByGputype(String gputype);
+
+	@Select("select * from  serverlist where location=#{location} and type=#{type}")
 
 	List<Serverlist> queryListByParam(String location,String type);
+	
+	@Select("select * from  serverlist where type=#{type} and gputype=#{gputype}")
+
+	List<Serverlist> queryListBy2Param(String type,String gputype);
+	
+	@Select("select * from  serverlist where location=#{location} and gputype=#{gputype}")
+
+	List<Serverlist> queryListBy21Param(String location,String gputype);
+
+	@Select("select * from  serverlist where location=#{location} and type=#{type} and gputype=#{gputype}")
+
+	List<Serverlist> queryListBy3Param(String location,String type,String gputype);
 
 
 	@Select(value = {"select count(id)  from  serverlist;"})
