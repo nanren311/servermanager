@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta charset="utf-8">
-    <title>资源列表页</title>
+    <title>Resource List</title>
     <!-- bootstrap 依赖 start-->
     <link rel="stylesheet"
           href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -75,14 +75,14 @@
                     <div class="form-group">
                         <div class="input-group">
                             <form action="/server/search" method="GET">
-                                <span class="input-group-addon">归属地</span>
+                                <span class="input-group-addon">Server Location</span>
                                 <select class="form-control selectpicker show-tick" data-size="6"
-                                        data-live-search="true" id="location" name="location" title="请选择"
+                                        data-live-search="true" id="location" name="location" title="Select"
                                         value="${location}">
-                                    <option  th:selected="${location ==''}"  value="">请选择</option>
+                                    <option  th:selected="${location ==''}"  value="">Select</option>
                                     <div >and</div>
-                                    <option  th:selected="${location =='上海'}"  value="上海">上海</option>
-                                    <option  th:selected="${location =='北京'}" value="北京">北京</option>
+                                    <option  th:selected="${location =='ShangHai'}"  value="上海">ShangHai</option>
+                                    <option  th:selected="${location =='BeiJing'}" value="北京">BeiJing</option>
 
                                 </select>
                                 
@@ -97,13 +97,14 @@
                                     
                                     
                                      <form action="/server/search" method="GET">
-                                    <span class="input-group-addon">服务器品牌</span>
+                                    <span class="input-group-addon">Server Vendor</span>
                                     <select class="form-control selectpicker show-tick" data-size="6"
-                                            data-live-search="true" id="type" name="type" title="请选择" value="${type}">
+                                            data-live-search="true" id="type" name="type" title="Select" value="${type}">
 
-                                        <option  th:selected="${type ==''}"  value="">请选择</option>
-                                        <option th:selected="${type =='dell'}" value="dell">dell</option>
-                                        <option th:selected="${type =='浪潮'}" value="浪潮">浪潮</option>
+                                        <option  th:selected="${type ==''}"  value="">Select</option>
+                                        <option th:selected="${type =='Dell'}" value="Dell">dell</option>
+                                        <option th:selected="${type =='Inspur'}" value="Inspur">Inspur</option>
+                                        <option th:selected="${type =='H3C'}" value="H3C">H3C</option>
 
                                     </select>
                                     
@@ -115,14 +116,14 @@
                                     
                                     
                                      <form action="/server/search" method="GET">
-                                    <span class="input-group-addon">显卡品牌</span>
+                                    <span class="input-group-addon">GPU Vendor</span>
                                     <select class="form-control selectpicker show-tick" data-size="6"
-                                            data-live-search="true" id="gputype" name="gputype" title="请选择" value="${gputype}">
+                                            data-live-search="true" id="gputype" name="gputype" title="Select" value="${gputype}">
 
-                                        <option  th:selected="${gputype ==''}"  value="">请选择</option>
-                                        <option th:selected="${gputype =='nvd'}" value="nvd">nvd</option>
-                                        <option th:selected="${gputype =='amd'}" value="amd">amd</option>
-                                        <option th:selected="${gputype =='h3'}" value="h3">h3</option>
+                                        <option  th:selected="${gputype ==''}"  value="">Select</option>
+                                        <option th:selected="${gputype =='nVidia'}" value="nVidia">nVidia</option>
+                                        <option th:selected="${gputype =='AMD'}" value="AMD">AMD</option>
+
 
                                     </select>
                                    
@@ -134,8 +135,8 @@
                                 
                         </div>
 
-                        <button type="submit" class="btn btn-primary">搜索</button>
-                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';" class="btn btn-primary" value="重置">
+                        <button type="submit" class="btn btn-primary">Find</button>
+                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';" class="btn btn-primary" value="Reset">
                         <input type="hidden" id="isHis" name="isHis" th:value="${isHis}">
                     </div>
                 </form>
@@ -152,7 +153,7 @@
 
 <br></br>
 
-                <h4> 服务器总数：<a th:text="${count}"></a>台 </h4>
+                <h4> Server list: <a th:text="${count}"></a> </h4>
 
     
                 
@@ -160,39 +161,39 @@
                     <thead>
                     <tr>
                         <th>
-                            编号
+                            Item
                         </th>
                         <th>
-                            服务器名称
+                            Server Name
                         </th>
-                        <th data-field="report_state" data-sortable="true" data-formatter="displaycolor">闲忙状态</th>
+                        <th data-field="report_state" data-sortable="true" data-formatter="displaycolor">Reservation Status</th>
                         <th>
-                            服务器使用人
-                        </th>
-                        <th>
-                            品牌
+                            Server User
                         </th>
                         <th>
-                            归属地
+                            Vendor
+                        </th>
+                        <th>
+                            Location
                         </th>
 
                         <th>
-                            预占开始时间
+                            Reservation Start
                         </th>
                         <th>
-                            预占结束时间
+                            Reservation Finish
                         </th>
                         <th>
-                            显卡品牌
+                            GPU Vendor
                         </th>
                         <th>
-                            部门
+                            Server User Dept.
                         </th>
                         <th>
-                            健康状态
+                            Server Healthy Status
                         </th>
                         <th>
-                            管理
+                            Details
 
                     </tr>
                     </thead>
@@ -204,7 +205,7 @@
                         <td th:text="${server.servername}">Onions</td>
                       <td th:text="${server.status}" class="statusName">Onions</td>                  
                      
-                    <!--        <td style="color:blue" th:text="${server.status}" ${server.status}=='1'?'使用中':'空闲'>Onions</td>  -->
+                    <!--        <td style="color:blue" th:text="${server.status}" ${server.status}=='1'?'In-use':'Idle'>Onions</td>  -->
 
                       
 
@@ -219,13 +220,13 @@
                         <td th:text="${server.healthystatus}" class="healthystatusName">Onions</td>
                         <td>
                           <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
-                               target="_self" th:if="${isHis} ne 'his'" >编辑</a>
+                               target="_self" th:if="${isHis} ne 'his'" >Edit</a>
                             <a
                                 th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
-                                target="_self">查看</a>
+                                target="_self">Recent Reservation</a>
                                 <a
                                 th:href="@{/server/chakana/(servername=${server.servername})}"
-                                target="_self">查看历史</a></td>
+                                target="_self">Reservation History</a></td>
 
                     </tr>
                     
@@ -233,41 +234,98 @@
                 </table>
                 
                 <br></br>
+             
+    <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <form action="/server/search" method="GET">
+                                <span class="input-group-addon">GPU Location</span>
+                                <select class="form-control selectpicker show-tick" data-size="6"
+                                        data-live-search="true" id="location" name="location" title="Select"
+                                        value="${location}">
+                                    <option  th:selected="${location ==''}"  value="">Select</option>
+                                    <div >and</div>
+                                    <option  th:selected="${location =='ShangHai'}"  value="上海">ShangHai</option>
+                                    <option  th:selected="${location =='BeiJing'}" value="北京">BeiJing</option>
 
-                <h4> 显卡总数：<a th:text="${countgpu}"></a>张 </h4>
+                                </select>
+                                
+                           
+                              
+                                <p></p>
+                            
+                               
+                                    
+                                                                    <form action="/server/search" method="GET">
+                                  <a> </a>
+                                    <span class="input-group-addon" style="background-color:white;border:none;">and</span>
+                                   
+                                    
+                                    
+                                    
+                                     <form action="/server/search" method="GET">
+                                    <span class="input-group-addon">GPU Vendor</span>
+                                    <select class="form-control selectpicker show-tick" data-size="6"
+                                            data-live-search="true" id="gputype" name="gputype" title="Select" value="${gputype}">
+
+                                        <option  th:selected="${gputype ==''}"  value="">Select</option>
+                                        <option th:selected="${gputype =='nVidia'}" value="nVidia">nVidia</option>
+                                        <option th:selected="${gputype =='AMD'}" value="AMD">AMD</option>
+
+
+                                    </select>
+                                   
+                          <p></p>
+                                   
+                                   
+                                </form>
+                                
+                                
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Find</button>
+                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';" class="btn btn-primary" value="Reset">
+                        <input type="hidden" id="isHis" name="isHis" th:value="${isHis}">
+                    </div>
+                </form>     
+                
+                <p></p>
+
+<br></br>
+                <h4> GPU List: <a th:text="${countgpu}"></a>  </h4>
                 <table class="table ">
                     <thead>
                     <tr>
                         <th>
-                            编号
+                            Item
                         </th>
                         <th>
-                            显卡归属地
+                            GPU Location
                         </th>
                         <th>
-                            显卡编码
+                            GPU SN
                         </th>
                         <th>
-                            显卡品牌
+                            GPU Vendor
                         </th>
                         <th>
-                            使用人
+                            GPU User
                         </th>
                         <th>
-                            健康状态
+                            GPU Healthy Status
                         </th>
                         <th>
-                            闲忙状态
+                            Reservation Status
                         </th>
                         <th>
-                            预占开始时间
+                            Reservation Start
                         </th>
                         <th>
-                            预占结束时间
+                            Reservation Finish
                         </th>
 
                         <th>
-                            管理
+                            Details
 
                     </tr>
                     </thead>
@@ -286,13 +344,13 @@
                         <td th:text="${gpu.gpuendtime}">Onions</td>
                         <td>
                           <a th:href="@{/server/update1/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
-                               target="_self" th:if="${isHis} ne 'his'" >编辑</a>
+                               target="_self" th:if="${isHis} ne 'his'" >Edit</a>
                             <a
                                 th:href="@{/server/chakangpu/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
-                                target="_self">查看</a>
+                                target="_self">Recent Reservation</a>
                                 <a
                                 th:href="@{/server/chakanagpu/(id=${gpu.id})}"
-                                target="_self">查看历史</a></td>
+                                target="_self">Reservation History</a></td>
 
                        
 
@@ -384,7 +442,7 @@ function a() {
 function b(){
         $(".statusName").each(function(){
 		let text = $(this).text()
-        if(text == "使用中") {
+        if(text == "In-use") {
             $(this).addClass('redColor')
         }else {
             $(this).addClass('greenColor')
@@ -397,7 +455,7 @@ function b(){
 function c(){
         $(".healthystatusName").each(function(){
 		let text = $(this).text()
-        if(text == "坏") {
+        if(text == "Damaged") {
             $(this).addClass('redColor')
         }else {
             $(this).addClass('greenColor')
@@ -410,7 +468,7 @@ function c(){
 function d(){
     $(".gpuhealthystatusName").each(function(){
 	let text = $(this).text()
-    if(text == "坏") {
+    if(text == "Damaged") {
         $(this).addClass('redColor')
     }else {
         $(this).addClass('greenColor')
@@ -422,7 +480,7 @@ function d(){
 function e(){
     $(".gpustatusName").each(function(){
 	let text = $(this).text()
-    if(text == "使用中") {
+    if(text == "In-use") {
         $(this).addClass('redColor')
     }else {
         $(this).addClass('greenColor')

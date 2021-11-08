@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<meta charset="utf-8"> 
-	<title>资源列表页</title>
+	<title>Resource List</title>
  <link rel="stylesheet"
 	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<meta charset="utf-8"> 
-	<title>资源列表页</title>
+	<title>Resource List</title>
 	<!-- bootstrap 依赖 start-->
  <link rel="stylesheet"
 	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -85,39 +85,39 @@
 		<div class="col-md-12 column">
 <form action="/server/chakana"  method="GET">
 
-	<h4> 历史预约：<a th:text="${count}"></a>次 </h4>
+	<h4> Reservation History：<a th:text="${count}"></a> </h4>
 	<table class="table ">
 		<thead>
 		<tr>
 
 			<th>
-				服务器名称
+				Server Name
 			</th>
 
 			<th>
-				服务器使用人
+				Server User
 			</th>
 			<th>
-				品牌
+				Vendor
 			</th>
 			<th>
-				归属地
+				Location
 			</th>
 
 			<th>
-				预占开始时间
+				Reservation Start
 			</th>
 			<th>
-				预占结束时间
+				Reservation Finish
 			</th>
 			<th>
-				显卡品牌
+				GPU Vendor
 			</th>
 			<th>
-				部门
+				Server User Dept.
 			</th>
 			<th>
-				健康状态
+				 Server Healthy Status
 			</th>
 			</tr>
 		</thead>
