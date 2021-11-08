@@ -31,11 +31,11 @@ public interface GpulistHisMapper extends BaseMapper<GpulistHis> {
 
 	List<GpulistHis> queryListByType(String gputype);
 	
-	@Select("select * from  gpulist_his where gpunm=#{gpunm} ORDER BY serverendtime DESC")
+	@Select("select gpunm,gpulocation,gputype,gpuuser,healthystatus,gpustatus,gpustarttime,gpuendtime from  gpulist_his where gpunm=#{gpunm} ORDER BY gpuendtime DESC")
 
 	List<GpulistHis> queryListByGpunm(String gpunm);
 
-	@Select("select * from  gpulist_his where gpulocation=#{gpulocation} and gputype=#{gputype} ORDER BY serverendtime DESC ")
+	@Select("select * from  gpulist_his where gpulocation=#{gpulocation} and gputype=#{gputype} ORDER BY gpuendtime DESC ")
 
 	List<GpulistHis> queryListByParam(String gpulocation,String gputype);
 

@@ -284,6 +284,15 @@
                         <td th:text="${gpu.gpustatus}">Onions</td>
                         <td th:text="${gpu.gpustarttime}">Onions</td>
                         <td th:text="${gpu.gpuendtime}">Onions</td>
+                        <td>
+                          <a th:href="@{/server/update1/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
+                               target="_self" th:if="${isHis} ne 'his'" >编辑</a>
+                            <a
+                                th:href="@{/server/chakangpu/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
+                                target="_self">查看</a>
+                                <a
+                                th:href="@{/server/chakanagpu/(id=${gpu.id})}"
+                                target="_self">查看历史</a></td>
 
                        
 

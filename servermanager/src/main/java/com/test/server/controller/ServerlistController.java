@@ -205,6 +205,36 @@ public class ServerlistController {
         return "/add";
     }
 
+    @GetMapping("/server/update1")
+    public String update1(HttpServletRequest r, Model model) throws Exception {
+    	Date date = new Date();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+   	
+ 
+    	String dateStr = simpleDateFormat.format(date);
+
+        String newdate = dateStr.replaceAll("[[\\s-:punct:]]","");
+        int dateNum = Integer.parseInt(newdate);
+  
+
+        String preid = r.getParameter("id");
+        int id = Integer.parseInt(preid);
+        
+        Gpulist gpu = new Gpulist();
+        gpu.setId(id);
+        gpu.setGpulocation(r.getParameter("gpulocation"));
+        gpu.setGpunm(r.getParameter("gpunm"));
+        gpu.setGputype(r.getParameter("gputype"));
+        gpu.setGpuuser(r.getParameter("gpuuser"));
+        gpu.setHealthystatus(r.getParameter("healthystatus"));
+        gpu.setGpustatus(r.getParameter("gpustatus"));
+        gpu.setGpustarttime(r.getParameter("gpustarttime"));
+        gpu.setGpuendtime(r.getParameter("gpuendtime"));
+        
+        
+        model.addAttribute("gpu", gpu);
+        return "/addnewgpu";
+    }
 
     @GetMapping("/server/addnewserver")
     public String add(HttpServletRequest r, Model model) throws Exception {
@@ -282,6 +312,63 @@ public class ServerlistController {
 
         return "redirect:/";
     }
+    @GetMapping("/server/addnewgpu")
+    public String addgpu(HttpServletRequest r, Model model) throws Exception {
+    	Date date = new Date();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	System.out.println("当前时间"+ simpleDateFormat.format(date));
+        String preid = r.getParameter("id");
+        boolean flag = false;//false means update
+        if (preid != "") {
+            int id = Integer.parseInt(preid);
+          
+            Gpulist tempGpu = gpumapper.selectById(id);
+            GpulistHis hisGpu = new GpulistHis();
+            hisGpu.setGpulocation(tempGpu.getGpulocation());
+            hisGpu.setGpunm(tempGpu.getGpunm());
+            hisGpu.setGputype(tempGpu.getGputype());
+            hisGpu.setGpuuser(tempGpu.getGpuuser());
+            hisGpu.setHealthystatus(tempGpu.getHealthystatus());
+            hisGpu.setGpustatus(tempGpu.getGpustatus());
+            hisGpu.setGpustarttime(tempGpu.getGpustarttime());
+            hisGpu.setGpuendtime(tempGpu.getGpuendtime());
+            gpuhismapper.insert(hisGpu);
+            
+            Gpulist gpu = new Gpulist();
+            gpu.setId(id);
+            gpu.setGpulocation(r.getParameter("gpulocation"));
+            gpu.setGpunm(r.getParameter("gpunm"));
+            gpu.setGputype(r.getParameter("gputype"));
+            gpu.setGpuuser(r.getParameter("gpuuser"));
+            gpu.setHealthystatus(r.getParameter("healthystatus"));
+            gpu.setGpustatus(r.getParameter("gpustatus"));
+            gpu.setGpustarttime(r.getParameter("gpustarttime"));
+            gpu.setGpuendtime(r.getParameter("gpuendtime"));
+            gpumapper.updateById(gpu);
+
+
+
+
+
+
+
+
+        } else {
+        	Gpulist gpu = new Gpulist();
+            gpu.setGpulocation(r.getParameter("gpulocation"));
+            gpu.setGpunm(r.getParameter("gpunm"));
+            gpu.setGputype(r.getParameter("gputype"));
+            gpu.setGpuuser(r.getParameter("gpuuser"));
+            gpu.setHealthystatus(r.getParameter("healthystatus"));
+            gpu.setGpustatus(r.getParameter("gpustatus"));
+            gpu.setGpustarttime(r.getParameter("gpustarttime"));
+            gpu.setGpuendtime(r.getParameter("gpuendtime"));
+            gpumapper.insert(gpu);
+
+        }
+
+        return "redirect:/";
+    }
 
     @GetMapping("/server/del")
     public String del(HttpServletRequest r) throws Exception {
@@ -327,8 +414,7 @@ public class ServerlistController {
       
   //    System.out.println(startTime);
       int endNum = Integer.parseInt(newEnd);
-      System.out.println(dateNum); 
-      System.out.println(endNum); 
+
       
        if(endNum<dateNum) {
         	server.setStatus("空闲");
@@ -349,6 +435,65 @@ public class ServerlistController {
         model.addAttribute("server", server);
         mapper.updateById(server);
         return "/chakan";
+    }
+    
+    @GetMapping("/server/chakangpu")
+    public String chakangpu(HttpServletRequest r, Model model) throws Exception {
+        Gpulist gpu = new Gpulist();
+        String preid = r.getParameter("id");
+        int id = Integer.parseInt(preid);
+        gpu.setId(id);
+        gpu.setGpulocation(r.getParameter("gpulocation"));
+        gpu.setGpunm(r.getParameter("gpunm"));
+
+        gpu.setGputype(r.getParameter("gputype"));
+        gpu.setGpuuser(r.getParameter("gpuuser"));
+        gpu.setHealthystatus(r.getParameter("healthystatus"));
+        gpu.setGpustatus(r.getParameter("gpustatus"));
+        
+        String newStart = r.getParameter("gpustarttime");
+     
+        System.out.println(newStart);
+        if (newStart =="" ) {
+        	gpu.setGpustatus("空闲");
+        	
+        } 
+        else {
+        
+        Date date = new Date();
+    	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    	
+    	System.out.println("当前时间"+ simpleDateFormat.format(date));
+    	String dateStr = simpleDateFormat.format(date);
+
+        String newdate = dateStr.replaceAll("[[\\s-:punct:]]","");
+        int dateNum = Integer.parseInt(newdate);
+        
+      String endTime = r.getParameter("gpuendtime");
+      String newEnd = endTime.replaceAll("[[\\s-:punct:]]","");
+      
+  //    System.out.println(startTime);
+      int endNum = Integer.parseInt(newEnd);
+
+      
+       if(endNum<dateNum) {
+    	   gpu.setGpustatus("空闲");
+        }
+        
+        else{
+        	gpu.setGpustatus("使用中");
+        }
+        }
+
+        System.out.println(gpu.gpustatus);
+        System.out.println("加油");
+        gpu.setGpustarttime(r.getParameter("gpustarttime"));
+
+        gpu.setGpuendtime(r.getParameter("gpuendtime"));
+       
+        model.addAttribute("gpu", gpu);
+        gpumapper.updateById(gpu);
+        return "/chakangpu";
     }
 
     //	@GetMapping("/server/search")
@@ -383,10 +528,24 @@ public class ServerlistController {
     @GetMapping("/server/chakana")
     public String chankana(HttpServletRequest request, Model model) {
         List<ServerlistHis> listHis = hismapper.queryListByServername(request.getParameter("servername"));
-//    	System.out.println(hismapper.queryListByServername(request.getParameter("servername")));
+        
+    	System.out.println(hismapper.queryListByServername(request.getParameter("servername")));
+        System.out.println("-------------------------------");
         model.addAttribute("serverlistHis", listHis);
         model.addAttribute("count", listHis.size());
     	return "/chakana";
+    	
+    }
+    
+    @GetMapping("/server/chakanagpu")
+    public String chankanagpu(HttpServletRequest request, Model model) {
+        List<GpulistHis> gpulistHis = gpuhismapper.queryListByGpunm(request.getParameter("gpunm"));
+        System.out.println("-------------------------------");
+        System.out.println(gpuhismapper.queryListByGpunm(request.getParameter("gpunm")));
+//    	System.out.println(hismapper.queryListByServername(request.getParameter("servername")));
+        model.addAttribute("gpulistHis", gpulistHis);
+        model.addAttribute("count", gpulistHis.size());
+    	return "/chakanagpu";
     	
     }
 

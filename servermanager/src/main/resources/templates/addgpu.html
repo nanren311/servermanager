@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<!--  <meta http-equiv="refresh" content="50">-->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta charset="utf-8"> 
+	<title>资源列表页</title>
+ <link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--时间格式-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+<link href="~/datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="~/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<script type="text/javascript" src="sample.js"></script>
+
+
+</head>
+<body>
+			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
+			
+			<!-- 开始
+			<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		<form method="post" enctype="multipart/form-data" action="http://localhost:8001/fileuplaod">
+		 <input type="text" name="url" value="" /><br/>
+    <input type="file" name="filename" multiple="multiple"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+		
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		</div>
+	</div>
+</div>
+			<!-- end -->
+			
+	
+	<div class="container">
+	        <div th:replace="header :: header"></div>
+
+</div>
+
+
+
+ 
+    
+    
+	
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+<form action="/server/addnewgpu"  method="GET">
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+                            编号
+                        </th>
+                        <th>
+                            显卡归属地
+                        </th>
+                        <th>
+                            显卡编码
+                        </th>
+                        <th>
+                            显卡品牌
+                        </th>
+                        <th>
+                            使用人
+                        </th>
+                        <th>
+                            健康状态
+                        </th>
+                        <th>
+                            闲忙状态
+                        </th>
+                        <th>
+                            预占开始时间
+                        </th>
+                        <th>
+                            预占结束时间
+                        </th>
+												
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr >
+					
+
+
+
+ 			
+					
+					
+					
+					
+						<td ><input type="text" class="form-control" id="id"  name="id" th:value="${gpu.id}"
+				  readonly placeholder="自动生成"></td>   
+					<td ><input type="text" class="form-control" id="gpulocation"  name="gpulocation" th:value="${gpu.gpulocation}"
+								 placeholder="归属地"></td>
+				   <td ><input type="text" class="form-control" id="gpunm"  name="gpunm"  th:value="${gpu.gpunm}"
+				  readonly th:title="${gpu.gpunm}" placeholder="显卡编码"></td>  
+					<td ><input type="text" class="form-control" id="gputype"  name="gputype"  th:value="${gpu.gputype}"
+				   placeholder="显卡品牌"></td>  
+					<td ><input type="text" class="form-control" id="gpuuser"  name="gpuuser"  th:value="${gpu.gpuuser}"
+				   placeholder="显卡使用人"></td> 
+				   <td ><input type="text" class="form-control" id="healthystatus"  name="healthystatus"  th:value="${gpu.healthystatus}"
+				   placeholder="健康状态"></td>  
+				   	<td ><input type="text" class="form-control" id="gpustatus"  name="gpustatus"  th:value="${gpu.gpustatus}"
+				   placeholder="状态"></td>  
+
+
+				   
+				   <td >
+				    <!-- <div class="row"> -->
+    <!-- <div class='col-sm-6'> -->
+
+        <div class="form-group" style="width:150px;">
+       <!-- <div class="modal-dialog modal-sm"> -->
+
+
+
+            <!--指定 date标记-->
+
+            <div class='input-group date' id='datetimepicker1' >
+
+                <input type='text' class="form-control" name="gpustarttime"  th:value="${gpu.gpustarttime}">
+
+                <span class="input-group-addon">
+
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+				   </td>  
+				  			   
+						   <td >
+
+
+        <div class="form-group" style="width:150px;">
+
+
+
+            <!--指定 date标记-->
+
+            <div class='input-group date' id='datetimepicker2'>
+
+                <input type='text' class="form-control" name="gpuendtime" th:value="${gpu.gpuendtime}">
+
+                <span class="input-group-addon">
+
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        <!-- </div>
+    </div>   -->
+ 
+
+				   </td>  		   
+				   
+				   
+					 
+			
+					</tr>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-default">保存</button>
+			<input id="return" name="Submit" type="submit" class="btn" value="返回"/>
+			
+						</form>
+ 		
+
+		</div>
+	</div>
+</div>
+	
+	
+   <!--引入共有底部
+    <div th:replace="footer :: footer"></div>-->
+    <!--消息盒子+反馈-->
+</body>
+<script type="text/javascript">
+$(function () { 
+	 var picker1 = $('#datetimepicker1').datetimepicker({ 
+	 format: 'YYYY-MM-DD', 
+	 locale: moment.datetimepicker2,
+	 //minDate: '2016-7-1' 
+	 }); 
+	 var picker2 = $('#datetimepicker2').datetimepicker({ 
+	 format: 'YYYY-MM-DD', 
+	 locale: moment.datetimepicker2,
+	 }); 
+	 //动态设置最小值 
+	 picker1.on('dp.change', function (e) { 
+	 picker2.data('DateTimePicker').minDate(e.date); 
+	 }); 
+	 //动态设置最大值 
+	 picker2.on('dp.change', function (e) { 
+	 picker1.data('DateTimePicker').maxDate(e.date); 
+	 }); 
+	 
+	 var nowdate = new Date();
+	 this.year = nowdate.getFullYear();
+	 this.month = nowdate.getMonth()+1;
+	 this.date= nowdate.getDate();
+	 var curdate = this.year + '/'+ this.month + '/' + this.date;
+	 
+
+
+	 var date1 = picker1.replace(/-/g,'/');
+	 var date2 = picker2.replace(/-/g,'/');
+	 var date3 = curdate.replace(/-/g,'/');
+	 var timestamp1 = new Date(date1).getTime();
+	 var timestamp2 = new Date(date2).getTime();
+	 var timenow = new Date(date3).getTime();
+
+	 
+	 if(date1=null){
+		 gpu.gpustatus="空闲";
+	 } 
+	 if(timestamp2<timenow){
+		 gpu.gpustatus="空闲";
+		 
+		 
+	 }
+	 else{
+			 gpu.gpustatus="使用中";
+			 
+		 }
+
+
+	 
+	 
+	}); 
+	
+
+
+    
+    
+
+</script>
+</html>

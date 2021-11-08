@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<!--  <meta http-equiv="refresh" content="50">-->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta charset="utf-8"> 
+	<title>资源列表页</title>
+ <link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--  <meta http-equiv="refresh" content="50">-->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<meta charset="utf-8"> 
+	<title>资源列表页</title>
+	<!-- bootstrap 依赖 start-->
+ <link rel="stylesheet"
+	href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script	src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<!--时间格式-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+	<!-- bootstrap 依赖 end-->
+ <!-- 引入 Bootstrap样式 -->
+      <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+     <!-- bootstrap-select样式 -->
+      <link href="${pageContext.request.contextPath}/resources/css/select/bootstrap-select.min.css" rel="stylesheet">
+ 
+     <!-- jQuery (Bootstrap 依赖于 jQuery) -->
+      <script src="${pageContext.request.contextPath}/resources/js/jquery-3.0.0.min.js"></script><br>
+     <!-- Bootstrap -->
+       <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+ 
+     <!-- Bootstrap-select 控件 -->
+       <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
+       <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script><br><br>
+
+</head>
+<body>
+			    <!--主页头部含有小屏幕时名片，不应使用共有头部-->
+			
+			<!-- 开始
+			<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		<form method="post" enctype="multipart/form-data" action="http://localhost:8001/fileuplaod">
+		 <input type="text" name="url" value="" /><br/>
+    <input type="file" name="filename" multiple="multiple"/><br/>
+    <input type="submit" value="提交"/>
+</form>
+		
+		</div>
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+		</div>
+	</div>
+</div>
+			<!-- end -->
+			
+	
+	<div class="container">
+	        <div th:replace="header :: header"></div>
+
+</div>
+	
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+<form action="/server/chakanagpu"  method="GET">
+
+	<h4> 历史预约：<a th:text="${count}"></a>次 </h4>
+	<table class="table ">
+		<thead>
+		<tr>
+
+
+                        <th>
+                            显卡编码
+                        </th>
+                        <th>
+                            显卡归属地
+                        </th>
+                        <th>
+                            显卡品牌
+                        </th>
+                        <th>
+                            使用人
+                        </th>
+                        <th>
+                            健康状态
+                        </th>
+                        <th>
+                            闲忙状态
+                        </th>
+                        <th>
+                            预占开始时间
+                        </th>
+                        <th>
+                            预占结束时间
+                        </th>
+			</tr>
+		</thead>
+
+
+		<tbody>
+		<tr th:each="gpu: ${gpulistHis}">
+		                <td th:text="${gpu.gpunm}">Onions</td>  
+		                <td th:text="${gpu.gpulocation}">Onions</td>                     
+                        <td th:text="${gpu.gputype}">Onions</td>
+                        <td th:text="${gpu.gpuuser}">Onions</td>
+                        <td th:text="${gpu.healthystatus}">Onions</td>
+                        <td th:text="${gpu.gpustatus}">Onions</td>
+                        <td th:text="${gpu.gpustarttime}">Onions</td>
+                        <td th:text="${gpu.gpuendtime}">Onions</td>
+			<!--<td>
+				<a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
+				   target="_self" th:if="${isHis} ne 'his'" >编辑</a>
+				<a
+						th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
+						target="_self">查看</a>
+				<a
+						th:href="@{/server/chakana/(servername=${server.servername})}"
+						target="_self">查看历史</a></td>
+						-->
+
+		</tr>
+		</tbody>
+	</table>
+	<p>
+
+			
+						</form>
+			
+
+		</div>
+	</div>
+</div>
+	
+
+<!--  	
+	<div class="container">
+
+		<div class="col-md-12 column">
+			<div class="progress">
+				<div class="progress-bar progress-bar-success" role="progressbar"
+         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"
+         style="width: 100%;">
+        <span class="sr-only">100% 完成（成功）</span>
+    </div>
+			</div>
+		</div>
+
+ 
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;
+         box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>
+         
+         2021-10-10预订人黄河
+         
+</p>
+      </div>
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>2021-10-20预订人李大师
+         </p>
+
+      </div>
+
+      <div class="clearfix visible-xs"></div>
+
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;
+         box-shadow:inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>2021-11-10预订人张三丰
+         </p>
+      </div>
+      <div class="col-xs-6 col-sm-3" 
+         style="background-color: #dedef8;box-shadow: 
+         inset 1px -1px 1px #444, inset -1px 1px 1px #444;">
+         <p>2021-12-10预订人张三丰 
+         </p>
+      </div>
+
+</div>
+	-->
+	
+	
+   <!--引入共有底部
+    <div th:replace="footer :: footer"></div>-->
+    <!--消息盒子+反馈-->
+</body>
+</html>

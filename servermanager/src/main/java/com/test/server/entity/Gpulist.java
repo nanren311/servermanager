@@ -63,7 +63,9 @@ public class Gpulist implements Serializable {
 		this.gpuendtime = gpuendtime;
 	}
 
-
+	public String getGpustatus(){
+		return gpustatus;
+	}
 	public void setGpustatus(String gpustatus) {
 		this.gpustatus = gpustatus;
 	}

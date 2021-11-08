@@ -31,7 +31,7 @@ public interface GpulistMapper extends BaseMapper<Gpulist> {
 
 	List<Gpulist> queryListByType(String gputype);
 	
-	@Select("select * from  gpulist where gpunm=#{gpunm} ORDER BY serverendtime DESC")
+	@Select("select * from  gpulist where gpunm=#{gpunm} ORDER BY gpuendtime DESC")
 
 	List<Gpulist> queryListByGpunm(String gpunm);
 
