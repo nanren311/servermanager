@@ -233,7 +233,7 @@ public class ServerlistController {
         
         
         model.addAttribute("gpu", gpu);
-        return "/addnewgpu";
+        return "/addgpu";
     }
 
     @GetMapping("/server/addnewserver")

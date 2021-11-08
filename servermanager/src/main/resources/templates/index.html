@@ -280,8 +280,8 @@
                         <td th:text="${gpu.gpunm}">Onions</td>
                         <td th:text="${gpu.gputype}">Onions</td>
                         <td th:text="${gpu.gpuuser}">Onions</td>
-                        <td th:text="${gpu.healthystatus}">Onions</td>
-                        <td th:text="${gpu.gpustatus}">Onions</td>
+                        <td th:text="${gpu.healthystatus}" class="gpuhealthystatusName">Onions</td>
+                        <td th:text="${gpu.gpustatus}" class="gpustatusName">Onions</td>
                         <td th:text="${gpu.gpustarttime}">Onions</td>
                         <td th:text="${gpu.gpuendtime}">Onions</td>
                         <td>
@@ -336,7 +336,7 @@
 <!--消息盒子+反馈-->
 </body>
 <script type="text/javascript">
-window.onload=function(){b();c();a();}
+window.onload=function(){b();c();d();e();a();}
 
 
 
@@ -407,7 +407,30 @@ function c(){
        
 }
 
-    
+function d(){
+    $(".gpuhealthystatusName").each(function(){
+	let text = $(this).text()
+    if(text == "坏") {
+        $(this).addClass('redColor')
+    }else {
+        $(this).addClass('greenColor')
+    }
+});
+
+   
+}
+function e(){
+    $(".gpustatusName").each(function(){
+	let text = $(this).text()
+    if(text == "使用中") {
+        $(this).addClass('redColor')
+    }else {
+        $(this).addClass('greenColor')
+    }
+});
+
+   
+}  
     
 
 </script>
