@@ -31,6 +31,7 @@ public class Serverlist implements Serializable {
 
 	public String gpuuser;
 	public String healthystatus;
+	public String propertyowner;
 
 	public String getServername() {
 		return servername;
@@ -126,12 +127,19 @@ public class Serverlist implements Serializable {
 	public void setGputype(String gputype) {
 		this.gputype = gputype;
 	}
+	public String getPropertyowner() {
+		return propertyowner;
+	}
+
+	public void setPropertyowner(String propertyowner) {
+		this.propertyowner = propertyowner;
+	}
 
 	@Override
 	public String toString() {
 		return "Serverlist [id=" + id + ", servername=" + servername + ", serveruser=" + serveruser + ", type="
 				+ type + ", location=" + location + ", serverreservetime=" + serverreservetime + ",serverstarttime=" + serverstarttime + ", serverendtime=" + serverendtime + ", gputype=" + gputype
-				+ ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + "]";
+				+ ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + ", propertyowner=" + propertyowner + "]";
 	}
 
 }

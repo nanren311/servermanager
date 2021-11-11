@@ -1,41 +1,107 @@
- 
- 
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
+    <!--  <meta http-equiv="refresh" content="50">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta charset="utf-8">
-    <title>登录页</title>
-    <link href="favicon.ico" rel="shortcut icon" />
-    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body style=" background: url(http://www.metax-tech.com/upload/20201120/25005a57fff24aec042439eb6c227a06.png) no-repeat center center fixed; background-size: 20%;">
- 
- 
-    <div class="modal-dialog" style="margin-top: 10%;">
-        <div class="modal-content">
-            <div class="modal-header">
- 
-                <h4 class="modal-title text-center" id="myModalLabel">登录</h4>
-            </div>
-            <div class="modal-body" id = "model-body">
-                <div class="form-group">
- 
-                    <input type="text" class="form-control"placeholder="用户名" autocomplete="off">
-                </div>
-                <div class="form-group">
- 
-                    <input type="password" class="form-control" placeholder="密码" autocomplete="off">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary form-control">登录</button>
-                </div>
+    <title>登录</title>
+    <!-- bootstrap 依赖 start-->
+    <link rel="stylesheet"
+          href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
- 
+
+    <!--时间格式-->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <!-- bootstrap 依赖 end-->
+    <!-- 引入 Bootstrap样式 -->
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap-select样式 -->
+    <link href="${pageContext.request.contextPath}/resources/css/select/bootstrap-select.min.css" rel="stylesheet">
+
+    <!-- jQuery (Bootstrap 依赖于 jQuery) -->
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.0.0.min.js"></script>
+    <br>
+    <!-- Bootstrap -->
+    <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap-select 控件 -->
+    <script src="${pageContext.request.contextPath}/resources/js/select/bootstrap-select.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/select/defaults-zh_CN.min.js"></script>
+    <br><br>
+    <style>
+        .redColor {
+            color: red;
+        }
+
+        .greenColor {
+            color: green;
+        }
+    </style>
+    <script type="text/javascript">
+        function clear() {
+            alert();
+            document.getElementById("location").value = '';
+            document.getElementById("type").value = '';
+        }
+    </script>
+
+
+</head>
+<body style=" background: url(http://www.metax-tech.com/upload/20201120/25005a57fff24aec042439eb6c227a06.png) no-repeat  center 40px fixed; background-size: 10%;">
+<div class="modal-dialog" style="margin-top: 10%;">
+    <div class="modal-content">
+        <div class="modal-header">
+
+            <h4 class="modal-title text-center" id="myModalLabel">登录</h4>
+        </div>
+        <div class="modal-body" id="model-body">
+
+            <form action="/login" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" name="username" th:value="${username}"
+                           placeholder="用户名" autocomplete="off">
+
+
+                </div>
+                <div class="form-group">
+
+                    <input type="password" class="form-control" id="userpassword" name="userpassword"
+                           th:value="${userpassword}" placeholder="密码" autocomplete="off">
+                </div>
+   
+        </div>
+        <div>
+            <div class="form-group">
+                <label class="text-center" th:value="用户名密码错误" id="msg"></label>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
- 
+            <div class="form-group" style="text-align:center">
+                <input type="submit" class="btn btn-default" value="登录"></input>
+            </div>
+
+        </div>    
+    </div>
+</div>
+
+    </div>
+</div>
+
+            <!--引入共有底部
+             <div th:replace="footer :: footer"> </div>-->
+            <!--消息盒子+反馈-->
 </body>
+
+
 </html>

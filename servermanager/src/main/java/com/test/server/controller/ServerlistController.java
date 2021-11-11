@@ -47,8 +47,23 @@ public class ServerlistController {
     @Autowired
     GpulistHisMapper gpuhismapper;
 
+    @GetMapping("/")
+    public String toLogin(HttpServletRequest request, Model model, Serverlist server,Gpulist gpu) throws Exception {
+        return "login";
+    }
+    @GetMapping("/login")
+    public String toLogon(HttpServletRequest request, Model model) throws Exception {
+        String userName=request.getParameter("username");
+        String userpassWord=request.getParameter("userpassword");
+        if("admin".equals(userName) && "123456".equals(userpassWord)){
+            return "redirect:/tolist";
+        }else {
+            model.addAttribute("msg", "用户名或者密码错误！");
+            return "/login";
+        }
+    }
 
-    @GetMapping("")
+    @GetMapping("/tolist")
     public String helloWorld(HttpServletRequest request, Model model, Serverlist server,Gpulist gpu) throws Exception {
         // List<Serverlist> list = mapper.queryAll();
         //int count = mapper.queryCount();
@@ -310,9 +325,9 @@ public class ServerlistController {
 
         }
 
-        return "redirect:/";
+        return "redirect:/tolist";
     }
-    @GetMapping("/server/addnewgpu")
+    @GetMapping("/server/addgpu")
     public String addgpu(HttpServletRequest r, Model model) throws Exception {
     	Date date = new Date();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -367,7 +382,7 @@ public class ServerlistController {
 
         }
 
-        return "redirect:/";
+        return "redirect:/tolist";
     }
 
     @GetMapping("/server/del")
