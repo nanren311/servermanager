@@ -38,15 +38,15 @@ public interface ServerlistMapper extends BaseMapper<Serverlist> {
 
 	List<Serverlist> queryListByParam(String location,String type);
 	
-	@Select("select * from  serverlist where type=#{type} and gputype=#{gputype}")
+	@Select("select * from  serverlist where type=#{type} and gputype like CONCAT('%',#{gputype},'%')")
 
 	List<Serverlist> queryListBy2Param(String type,String gputype);
 	
-	@Select("select * from  serverlist where location=#{location} and gputype=#{gputype}")
+	@Select("select * from  serverlist where location=#{location} and gputype like CONCAT('%',#{gputype},'%')")
 
 	List<Serverlist> queryListBy21Param(String location,String gputype);
 
-	@Select("select * from  serverlist where location=#{location} and type=#{type} and gputype=#{gputype}")
+	@Select("select * from  serverlist where location=#{location} and type=#{type} and gputype like CONCAT('%',#{gputype},'%')")
 
 	List<Serverlist> queryListBy3Param(String location,String type,String gputype);
 

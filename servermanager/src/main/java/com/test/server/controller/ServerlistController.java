@@ -70,20 +70,37 @@ public class ServerlistController {
         String location = request.getParameter("location");
         String type = request.getParameter("type");
         String gputype = request.getParameter("gputype");
+        String gpulocation = request.getParameter("gpulocation");
         String isHis = request.getParameter("isHis");
         String newStart = request.getParameter("serverstarttime");
         
         if (newStart =="" ) {
-        	server.setStatus("空闲");
+        	server.setStatus("Idle");
         	
         }else {
-        	server.setStatus("使用中");
+        	server.setStatus("In-use");
         	
         }
-        List<Gpulist> gpu1 = gpumapper.queryAll();
+        List<Gpulist> gpu1;
+        List<GpulistHis> gpulistHis;
         int countgpu = gpumapper.queryCount1();
+        if(!"his".equals(isHis)) {
+        	if(StringUtils.hasText(gpulocation) && StringUtils.hasText(gputype)){
+                gpu1 = gpumapper.queryListByParam(gpulocation,gputype);
+        }else if (StringUtils.hasText(gpulocation) && !StringUtils.hasText(gputype)){
+            gpu1 = gpumapper.queryListByLocation(gpulocation);
+        }else if (!StringUtils.hasText(gpulocation) && StringUtils.hasText(gputype)){
+            gpu1 = gpumapper.queryListByType(gputype);
+        }
+        else {
+        	gpu1 = gpumapper.queryAll();
+        }
 
-
+        model.addAttribute("gpulist", gpu1);
+        model.addAttribute("countgpu", gpu1.size());
+        }else {
+        	gpulistHis = gpuhismapper.queryAll();
+        }
         
         List<Serverlist> list;
         List<ServerlistHis> listHis;
@@ -109,8 +126,8 @@ public class ServerlistController {
             }
             model.addAttribute("serverlist", list);
             model.addAttribute("count", list.size());
-            model.addAttribute("gpulist", gpu1);
-            model.addAttribute("countgpu", gpu1.size());
+
+
         }else {
             if (StringUtils.hasText(location) && StringUtils.hasText(type)) {
                 listHis = hismapper.queryListByParam(location, type);
@@ -130,6 +147,7 @@ public class ServerlistController {
         model.addAttribute("type", type);
         model.addAttribute("gputype", gputype);
         model.addAttribute("isHis", isHis);
+        model.addAttribute("gpulocation", gpulocation);
         mapper.updateById(server);
         return "/index";
     }
@@ -432,11 +450,11 @@ public class ServerlistController {
 
       
        if(endNum<dateNum) {
-        	server.setStatus("空闲");
+        	server.setStatus("Idle");
         }
         
         else{
-        	server.setStatus("使用中");
+        	server.setStatus("In-use");
         }
         }
 
@@ -492,11 +510,11 @@ public class ServerlistController {
 
       
        if(endNum<dateNum) {
-    	   gpu.setGpustatus("空闲");
+    	   gpu.setGpustatus("Idle");
         }
         
         else{
-        	gpu.setGpustatus("使用中");
+        	gpu.setGpustatus("In-use");
         }
         }
 

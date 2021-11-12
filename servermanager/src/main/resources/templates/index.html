@@ -81,8 +81,8 @@
                                         value="${location}">
                                     <option  th:selected="${location ==''}"  value="">Select</option>
                                     <div >and</div>
-                                    <option  th:selected="${location =='ShangHai'}"  value="上海">ShangHai</option>
-                                    <option  th:selected="${location =='BeiJing'}" value="北京">BeiJing</option>
+                                    <option  th:selected="${location =='ShangHai'}"  value="ShangHai">ShangHai</option>
+                                    <option  th:selected="${location =='BeiJing'}" value="BeiJing">BeiJing</option>
 
                                 </select>
                                 
@@ -135,7 +135,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Find</button>
-                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';" class="btn btn-primary" value="Reset">
+                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';document.getElementById('gputype').value = '';" class="btn btn-primary" value="Reset">
                         <input type="hidden" id="isHis" name="isHis" th:value="${isHis}">
                     </div>
                 </form>
@@ -194,6 +194,9 @@
                         <th>
                             Server Healthy Status
                         </th>
+                                                <th>
+                            Project
+                        </th>
                         <th>
                             Details
 
@@ -220,6 +223,7 @@
                         <td th:text="${server.gputype}">Onions</td>
                         <td th:text="${server.gpuuser}">Onions</td>
                         <td th:text="${server.healthystatus}" class="healthystatusName">Onions</td>
+                        <td th:text="${server.project}">Onions</td>
                         <td>
                           <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
                                target="_self" th:if="${isHis} ne 'his'" >Edit</a>
@@ -242,12 +246,12 @@
                             <form action="/server/search" method="GET">
                                 <span class="input-group-addon">GPU Location</span>
                                 <select class="form-control selectpicker show-tick" data-size="6"
-                                        data-live-search="true" id="location" name="location" title="Select"
-                                        value="${location}">
-                                    <option  th:selected="${location ==''}"  value="">Select</option>
+                                        data-live-search="true" id="gpulocation" name="gpulocation" title="Select"
+                                        value="${gpulocation}">
+                                    <option  th:selected="${gpulocation ==''}"  value="">Select</option>
                                     <div >and</div>
-                                    <option  th:selected="${location =='ShangHai'}"  value="ShangHai">ShangHai</option>
-                                    <option  th:selected="${location =='BeiJing'}" value="BeiJing">BeiJing</option>
+                                    <option  th:selected="${gpulocation =='ShangHai'}"  value="ShangHai">ShangHai</option>
+                                    <option  th:selected="${gpulocation =='BeiJing'}" value="BeiJing">BeiJing</option>
 
                                 </select>
                                 
@@ -285,7 +289,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Find</button>
-                       <input type="button" onclick="document.getElementById('location').value = '';document.getElementById('type').value = '';" class="btn btn-primary" value="Reset">
+                       <input type="button" onclick="document.getElementById('gpulocation').value = '';document.getElementById('gputype').value = '';" class="btn btn-primary" value="Reset">
                         <input type="hidden" id="isHis" name="isHis" th:value="${isHis}">
                     </div>
                 </form>     
@@ -327,6 +331,9 @@
                         <th>
                             Reservation Finish
                         </th>
+                         <th>
+                            Project
+                        </th>
 
                         <th>
                             Details
@@ -347,6 +354,7 @@
                         <td th:text="${gpu.gpustatus}" class="gpustatusName">Onions</td>
                         <td th:text="${gpu.gpustarttime}">Onions</td>
                         <td th:text="${gpu.gpuendtime}">Onions</td>
+                        <td th:text="${gpu.project}">Onions</td>
                         <td>
                           <a th:href="@{/server/update1/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
                                target="_self" th:if="${isHis} ne 'his'" >Edit</a>

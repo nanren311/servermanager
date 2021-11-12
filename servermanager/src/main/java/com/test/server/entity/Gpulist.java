@@ -28,6 +28,7 @@ public class Gpulist implements Serializable {
 	public String gpuuser;
 	public String healthystatus;
 	public String propertyowner;
+	public String project;
 
 
 
@@ -112,10 +113,18 @@ public class Gpulist implements Serializable {
 	public void setPropertyowner(String propertyowner) {
 		this.propertyowner = propertyowner;
 	}
+	public String getProject() {
+		return project;
+	}
+
+	public void setProject(String project) {
+		this.project = project;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Gpulist [id=" + id + ", gpuuser=" + gpuuser + ", gputype=" + gputype + ", gpulocation=" + gpulocation + ", gpustatus=" + gpustatus + ",gpustarttime=" + gpustarttime + ", gpuendtime=" + gpuendtime + ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + ", propertyowner=" + propertyowner + "]";
+		return "Gpulist [id=" + id + ", gpuuser=" + gpuuser + ", gputype=" + gputype + ", gpulocation=" + gpulocation + ", gpustatus=" + gpustatus + ",gpustarttime=" + gpustarttime + ", gpuendtime=" + gpuendtime + ", gpuuser=" + gpuuser + ", healthystatus=" + healthystatus + ", propertyowner=" + propertyowner + ", project=" + project + "]";
 	}
 
 }
