@@ -30,7 +30,7 @@ public interface ServerlistMapper extends BaseMapper<Serverlist> {
 	@Select("select * from  serverlist where type=#{type}")
 
 	List<Serverlist> queryListByType(String type);
-	@Select("select * from  serverlist where gputype=#{gputype}")
+	@Select("select * from  serverlist where gputype like CONCAT('%',#{gputype},'%')")
 
 	List<Serverlist> queryListByGputype(String gputype);
 

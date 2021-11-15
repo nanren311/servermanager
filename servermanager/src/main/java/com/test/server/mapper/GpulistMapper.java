@@ -27,7 +27,7 @@ public interface GpulistMapper extends BaseMapper<Gpulist> {
 
 	List<Gpulist> queryListByLocation(String gpulocation);
 
-	@Select("select * from  gpulist where gputype=#{gputype}")
+	@Select("select * from  gpulist where gputype like CONCAT('%',#{gputype},'%')")
 
 	List<Gpulist> queryListByType(String gputype);
 	
@@ -35,7 +35,7 @@ public interface GpulistMapper extends BaseMapper<Gpulist> {
 
 	List<Gpulist> queryListByGpunm(String gpunm);
 
-	@Select("select * from  gpulist where gpulocation=#{gpulocation} and gputype=#{gputype} ORDER BY gpuendtime DESC ")
+	@Select("select * from  gpulist where gpulocation=#{gpulocation} and gputype like CONCAT('%',#{gputype},'%') ORDER BY gpuendtime DESC ")
 
 	List<Gpulist> queryListByParam(String gpulocation,String gputype);
 

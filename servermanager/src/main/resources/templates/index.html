@@ -3,11 +3,19 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <!--  <meta http-equiv="refresh" content="50">-->
+    <img src="../img/logo1.png" align="right" />
+
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=yes">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <meta charset="utf-8">
+
+
+
     <title>Resource List</title>
+
+        <div class="table-responsive"></div>
     <!-- bootstrap 依赖 start-->
     <link rel="stylesheet"
           href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -59,6 +67,12 @@
     
 
 </head>
+
+<p>
+</p>
+
+
+<div color="black" style="text-align:center"><font size="6"> Metax Testing Server/GPU Booking System </font> </div>
 <body>
 
 
@@ -66,7 +80,9 @@
 
 <div id ="app">
     <div class="container">
+    <div class="table-responsive">
         <div th:replace="header :: header"></div>
+        </div>
     </div>
     <div class="container">
         <div class="row clearfix">
@@ -121,7 +137,7 @@
                                             data-live-search="true" id="gputype" name="gputype" title="Select" value="${gputype}">
 
                                         <option  th:selected="${gputype ==''}"  value="">Select</option>
-                                        <option th:selected="${gputype =='nVidia'}" value="nVidia">nVidia</option>
+                                        <option th:selected="${gputype =='NVIDIA'}" value="NVIDIA">NVIDIA</option>
                                         <option th:selected="${gputype =='AMD'}" value="AMD">AMD</option>
 
                                     </select>
@@ -156,7 +172,7 @@
 
     
                 
-                <table class="table ">
+                <table class="table">
                     <thead>
                     <tr>
                         <th>
@@ -225,8 +241,8 @@
                         <td th:text="${server.healthystatus}" class="healthystatusName">Onions</td>
                         <td th:text="${server.project}">Onions</td>
                         <td>
-                          <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
-                               target="_self" th:if="${isHis} ne 'his'" >Edit</a>
+       <!--                    <a th:href="@{/server/update/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
+                               target="_self" th:if="${isHis} ne 'his'" >Edit</a> --> 
                             <a
                                 th:href="@{/server/chakan/(id=${server.id},servername=${server.servername},serveruser=${server.serveruser},type=${server.type},location=${server.location},serverstarttime=${server.serverstarttime},serverendtime=${server.serverendtime},gputype=${server.gputype},gpuuser=${server.gpuuser},healthystatus=${server.healthystatus})}"
                                 target="_self">Recent Reservation</a>
@@ -274,7 +290,7 @@
                                             data-live-search="true" id="gputype" name="gputype" title="Select" value="${gputype}">
 
                                         <option  th:selected="${gputype ==''}"  value="">Select</option>
-                                        <option th:selected="${gputype =='nVidia'}" value="nVidia">nVidia</option>
+                                        <option th:selected="${gputype =='NVIDIA'}" value="NVIDIA">NVIDIA</option>
                                         <option th:selected="${gputype =='AMD'}" value="AMD">AMD</option>
 
 
@@ -356,8 +372,8 @@
                         <td th:text="${gpu.gpuendtime}">Onions</td>
                         <td th:text="${gpu.project}">Onions</td>
                         <td>
-                          <a th:href="@{/server/update1/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
-                               target="_self" th:if="${isHis} ne 'his'" >Edit</a>
+                        <!--    <a th:href="@{/server/update1/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
+                               target="_self" th:if="${isHis} ne 'his'" >Edit</a>   -->
                             <a
                                 th:href="@{/server/chakangpu/(id=${gpu.id},gpulocation=${gpu.gpulocation},gpunm=${gpu.gpunm},gputype=${gpu.gputype},gpuuser=${gpu.gpuuser},healthystatus=${gpu.healthystatus},gpustatus=${gpu.gpustatus},gpustarttime=${gpu.gpustarttime},gpuendtime=${gpu.gpuendtime})}"
                                 target="_self">Recent Reservation</a>

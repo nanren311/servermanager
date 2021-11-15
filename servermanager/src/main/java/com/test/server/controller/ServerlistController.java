@@ -51,7 +51,7 @@ public class ServerlistController {
     public String toLogin(HttpServletRequest request, Model model, Serverlist server,Gpulist gpu) throws Exception {
         return "login";
     }
-    @GetMapping("/login")
+    @GetMapping("login")
     public String toLogon(HttpServletRequest request, Model model) throws Exception {
         String userName=request.getParameter("username");
         String userpassWord=request.getParameter("userpassword");
@@ -59,11 +59,11 @@ public class ServerlistController {
             return "redirect:/tolist";
         }else {
             model.addAttribute("msg", "用户名或者密码错误！");
-            return "/login";
+            return "login";
         }
     }
 
-    @GetMapping("/tolist")
+    @GetMapping("tolist")
     public String helloWorld(HttpServletRequest request, Model model, Serverlist server,Gpulist gpu) throws Exception {
         // List<Serverlist> list = mapper.queryAll();
         //int count = mapper.queryCount();
@@ -149,31 +149,31 @@ public class ServerlistController {
         model.addAttribute("isHis", isHis);
         model.addAttribute("gpulocation", gpulocation);
         mapper.updateById(server);
-        return "/index";
+        return "index";
     }
 
-    @GetMapping("/index")
-    public String index(Model model, Serverlist server,Gpulist gpu ) throws Exception {
+   // @GetMapping("index")
+   // public String index(Model model, Serverlist server,Gpulist gpu ) throws Exception {
 
-        List<Serverlist> list = mapper.queryAll();
-        for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
+   //     List<Serverlist> list = mapper.queryAll();
+    //    for (Iterator iterator = list.iterator(); iterator.hasNext(); ) {
 
-            Serverlist serverlist = (Serverlist) iterator.next();
+   //         Serverlist serverlist = (Serverlist) iterator.next();
           
-            System.out.println(serverlist.toString());
-        }
-        List<Gpulist> gpulist = gpumapper.queryAll();
+   //         System.out.println(serverlist.toString());
+   //     }
+    //    List<Gpulist> gpulist = gpumapper.queryAll();
 
-        model.addAttribute("serverlist", list);
-        mapper.updateById(server);
-        model.addAttribute("gpulist",gpu);
-        gpumapper.updateById(gpu);
-        return "/index";
+    //    model.addAttribute("serverlist", list);
+    //    mapper.updateById(server);
+   //     model.addAttribute("gpulist",gpu);
+    //    gpumapper.updateById(gpu);
+   //     return "/index";
 
         	
         	
         	
-        }
+   //     }
         
         
         
@@ -193,7 +193,7 @@ public class ServerlistController {
 //	
 
 
-    @GetMapping("/server/update")
+    @GetMapping("server/update")
     public String update(HttpServletRequest r, Model model) throws Exception {
     	Date date = new Date();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -235,10 +235,10 @@ public class ServerlistController {
         
         model.addAttribute("server", server);
         model.addAttribute("gpu", gpu);
-        return "/add";
+        return "add";
     }
 
-    @GetMapping("/server/update1")
+    @GetMapping("server/update1")
     public String update1(HttpServletRequest r, Model model) throws Exception {
     	Date date = new Date();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -266,10 +266,10 @@ public class ServerlistController {
         
         
         model.addAttribute("gpu", gpu);
-        return "/addgpu";
+        return "addgpu";
     }
 
-    @GetMapping("/server/addnewserver")
+    @GetMapping("server/addnewserver")
     public String add(HttpServletRequest r, Model model) throws Exception {
     	Date date = new Date();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -345,7 +345,7 @@ public class ServerlistController {
 
         return "redirect:/tolist";
     }
-    @GetMapping("/server/addgpu")
+    @GetMapping("server/addgpu")
     public String addgpu(HttpServletRequest r, Model model) throws Exception {
     	Date date = new Date();
     	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -403,14 +403,14 @@ public class ServerlistController {
         return "redirect:/tolist";
     }
 
-    @GetMapping("/server/del")
+    @GetMapping("server/del")
     public String del(HttpServletRequest r) throws Exception {
         int id = Integer.parseInt(r.getParameter("id"));
         mapper.deleteById(id);
         return "redirect:/";
     }
 
-    @GetMapping("/server/chakan")
+    @GetMapping("server/chakan")
     public String chakan(HttpServletRequest r, Model model) throws Exception {
         Serverlist server = new Serverlist();
         String preid = r.getParameter("id");
@@ -467,10 +467,10 @@ public class ServerlistController {
         server.setHealthystatus(r.getParameter("healthystatus"));
         model.addAttribute("server", server);
         mapper.updateById(server);
-        return "/chakan";
+        return "chakan";
     }
     
-    @GetMapping("/server/chakangpu")
+    @GetMapping("server/chakangpu")
     public String chakangpu(HttpServletRequest r, Model model) throws Exception {
         Gpulist gpu = new Gpulist();
         String preid = r.getParameter("id");
@@ -526,7 +526,7 @@ public class ServerlistController {
        
         model.addAttribute("gpu", gpu);
         gpumapper.updateById(gpu);
-        return "/chakangpu";
+        return "chakangpu";
     }
 
     //	@GetMapping("/server/search")
@@ -551,14 +551,14 @@ public class ServerlistController {
 //		return "redirect:/";
 //		
 //	}
-    @GetMapping("/server/search")
+    @GetMapping("server/search")
     public String searchlist(HttpServletRequest request) {
         System.out.println("11");
         mapper.queryListByParam(request.getParameter("location"), request.getParameter("type"));
-        return "/search";
+        return "search";
     }
 
-    @GetMapping("/server/chakana")
+    @GetMapping("server/chakana")
     public String chankana(HttpServletRequest request, Model model) {
         List<ServerlistHis> listHis = hismapper.queryListByServername(request.getParameter("servername"));
         
@@ -566,11 +566,11 @@ public class ServerlistController {
         System.out.println("-------------------------------");
         model.addAttribute("serverlistHis", listHis);
         model.addAttribute("count", listHis.size());
-    	return "/chakana";
+    	return "chakana";
     	
     }
     
-    @GetMapping("/server/chakanagpu")
+    @GetMapping("server/chakanagpu")
     public String chankanagpu(HttpServletRequest request, Model model) {
         List<GpulistHis> gpulistHis = gpuhismapper.queryListByGpunm(request.getParameter("gpunm"));
         System.out.println("-------------------------------");
@@ -578,7 +578,7 @@ public class ServerlistController {
 //    	System.out.println(hismapper.queryListByServername(request.getParameter("servername")));
         model.addAttribute("gpulistHis", gpulistHis);
         model.addAttribute("count", gpulistHis.size());
-    	return "/chakanagpu";
+    	return "chakanagpu";
     	
     }
 
